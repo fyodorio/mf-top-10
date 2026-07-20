@@ -2,7 +2,7 @@
 
 ## Summary
 
-[This project](index.md) develops a focused, evidence-backed awareness document for the security risks introduced or amplified when JavaScript and TypeScript metaframeworks combine routing, rendering, data access, server capabilities, build tooling, caching, and deployment adapters.
+[This project](index.md) develops a focused, evidence-backed awareness document for the security risks introduced or amplified when JavaScript and TypeScript [metaframeworks](https://metaframe.works/comparison/) combine routing, rendering, data access, server capabilities, build tooling, caching, and deployment adapters.
 
 ## Why this work exists
 
