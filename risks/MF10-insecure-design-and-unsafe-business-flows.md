@@ -11,7 +11,7 @@
 
 Required security controls were never designed for the application’s assets, trust boundaries, workflows, tenancy model, automation exposure, and failure states. A secure implementation cannot compensate for a missing decision about who may perform an action, what data may cross a boundary, how a costly operation is constrained, or which variants of a route are trusted.
 
-This category captures business-logic and workflow abuse that does not fit a narrower technical root cause. It also gives the original “bulk AI development” concern the right home: AI-assisted coding, non-strict typing, rapid framework migration, copy-pasted middleware, and monolithic coupling are risk multipliers when they skip architecture review, test design, and ownership—not vulnerability classes by themselves.
+This category captures business-logic and workflow abuse that does not fit a narrower technical root cause. It also gives the original “bulk AI development” concern the right home: AI-assisted coding, non-strict typing, rapid framework migration, copy-pasted middleware, and monolithic coupling are risk multipliers when they skip architecture review, test design, and ownership — not vulnerability classes by themselves.
 
 ## Metaframework-specific failure modes
 

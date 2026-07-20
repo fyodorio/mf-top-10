@@ -9,7 +9,7 @@
 
 ## Description
 
-An application fails to prove the caller’s identity, establish the correct authority, or enforce that authority at the operation, object, and property level. In a metaframework, server functions/actions, route handlers, loaders, endpoints, RPC-like calls, page data functions, and server islands are all server-side entry points—even when the UI does not visibly link to them.
+An application fails to prove the caller’s identity, establish the correct authority, or enforce that authority at the operation, object, and property level. In a metaframework, server functions/actions, route handlers, loaders, endpoints, RPC-like calls, page data functions, and server islands are all server-side entry points — even when the UI does not visibly link to them.
 
 Middleware and route guards are useful for optimistic redirects, coarse filtering, and rate limiting. They are not a sufficient authorization boundary. Every sensitive data access and state-changing operation must authorize the current principal in the server-side function that performs it.
 

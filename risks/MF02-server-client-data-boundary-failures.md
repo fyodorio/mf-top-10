@@ -9,7 +9,7 @@
 
 ## Description
 
-Server-only data, capabilities, configuration, or types cross into a browser-visible representation without an explicit least-privilege contract. Framework serialization, hydration payloads, page props, RSC/Flight payloads, server-island props, environment-variable exposure, and error pages make these transfers convenient—but any value sent to the browser must be treated as public.
+Server-only data, capabilities, configuration, or types cross into a browser-visible representation without an explicit least-privilege contract. Framework serialization, hydration payloads, page props, RSC/Flight payloads, server-island props, environment-variable exposure, and error pages make these transfers convenient — but any value sent to the browser must be treated as public.
 
 This category is not limited to secrets. Excessive fields, internal identifiers, authorization state, business rules, source details, or data from a different tenant can produce confidentiality loss or enable later attacks.
 

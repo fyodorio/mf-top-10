@@ -24,7 +24,7 @@ Metaframework applications can create routes and server capabilities from file s
 ## Prevention and verification priorities
 
 1. Generate and continuously verify an endpoint inventory from build manifests, framework route metadata, deployed probes, and adapter configuration.
-2. Log security outcomes—not secrets—for identity events, authorization decisions, mutations, egress requests, cache events, rate-limit decisions, and administrator actions.
+2. Log security outcomes — not secrets — for identity events, authorization decisions, mutations, egress requests, cache events, rate-limit decisions, and administrator actions.
 3. Correlate edge/CDN, proxy, framework, application, and cloud logs using request and deployment IDs.
 4. Establish alerts and runbooks for abnormal route variants, authorization denials, server-side egress, cache poisoning indicators, spending spikes, and saturation.
 5. Test incident reconstruction and ensure logging redacts credentials and sensitive payload fields.

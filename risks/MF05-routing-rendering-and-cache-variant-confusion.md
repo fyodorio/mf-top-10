@@ -9,7 +9,7 @@
 
 ## Description
 
-Two layers disagree about what a request means, which response variant it represents, or whether it is safe to cache. The layers may include a browser, CDN, reverse proxy, edge runtime, framework router, middleware, server renderer, data endpoint, and component transport. A request intended for data, RSC/Flight, an island, a prefetch, a redirect, or a static generation flow can then be interpreted as an ordinary page request—or vice versa.
+Two layers disagree about what a request means, which response variant it represents, or whether it is safe to cache. The layers may include a browser, CDN, reverse proxy, edge runtime, framework router, middleware, server renderer, data endpoint, and component transport. A request intended for data, RSC/Flight, an island, a prefetch, a redirect, or a static generation flow can then be interpreted as an ordinary page request — or vice versa.
 
 The result can be authorization bypass, content confusion, cache poisoning, stored XSS, incorrect redirects, private-data disclosure, or denial of service. This is distinct from an application’s ordinary authorization bug: the intended rule may exist, but an alternate transport or cache variant bypasses it.
 
@@ -26,7 +26,7 @@ The result can be authorization bypass, content confusion, cache poisoning, stor
 1. Enumerate every public request variant per route: HTML, JSON/data, RSC/Flight, islands, prefetch, redirect, static, locale, error, and action/function transports.
 2. Ensure proxies strip or normalize framework-internal headers from untrusted clients. Upgrade promptly when a framework fixes request classification.
 3. Align shared-cache keys with every request attribute that changes a response; disable shared caching when safe partitioning cannot be proved.
-4. Verify `Vary`, cache-control, redirect caching, and cache-buster behavior on the deployed CDN—not only in local development.
+4. Verify `Vary`, cache-control, redirect caching, and cache-buster behavior on the deployed CDN — not only in local development.
 5. Test with concurrent requests and production-like intermediaries; inspect both the origin response and the response actually served from cache.
 
 ## Relevant CWEs
