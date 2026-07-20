@@ -1,8 +1,8 @@
 # Top 10 Metaframework Security Risks — Index
 
-This is a draft-stage awareness document for full-stack JavaScript and TypeScript metaframework applications, including Next.js, Nuxt, Astro, SvelteKit, React Router framework mode, TanStack Start, SolidStart, and comparable systems.
+This is a draft-stage awareness document for full-stack JavaScript and TypeScript [metaframework](https://metaframe.works/blog/what-is-a-metaframework/) applications, including [Next.js](https://nextjs.org), [Nuxt](https://nuxt.com), [Astro](https://astro.build), [SvelteKit](https://svelte.dev/docs/kit/introduction), [Remix](https://remix.run), [TanStack Start](https://tanstack.com/start/latest), [SolidStart](https://start.solidjs.com), and comparable systems.
 
-These frameworks deliberately merge concerns that used to be separate: UI rendering, routing, data loading, server endpoints, build tooling, cache control, and deployment adapters. That integration is valuable, but it creates security boundaries which are easy to misunderstand or configure inconsistently. This project narrows the general OWASP Top 10 to those boundaries; it does **not** replace the OWASP Top 10, OWASP API Security Top 10, client-side guidance, or framework-specific security guidance.
+These frameworks deliberately merge concerns that used to be separate: UI rendering, routing, data loading, server endpoints, build tooling, cache control, and deployment adapters. That integration is valuable, but it creates security boundaries which are easy to misunderstand or configure inconsistently. This project narrows the general OWASP Top 10 to those boundaries; it does **not** replace the [OWASP Top 10](https://owasp.org/www-project-top-ten/), [OWASP API Security Top 10](https://owasp.org/API-Security/), [client-side guidance](https://owasp.org/www-project-top-10-client-side-security-risks/), or framework-specific security guidance.
 
 ## Status and intended use
 
@@ -38,7 +38,7 @@ Each risk page uses the four factors common in OWASP-style risk descriptions.
 
 Technical impact is deliberately **not** called severity. In common risk-rating practice, severity is a resulting rating for a particular finding after likelihood and impact are assessed in its real environment. Technical impact is one input to that assessment, and keeping the terms separate avoids implying that every instance of a category has the same severity.
 
-The terms describe a category, not every vulnerability within it. The CVE/GHSA lists in each risk page are strong representative evidence for why the category matters. They are not complete use-case scenarios: an advisory documents a particular affected version and preconditions, while a scenario should demonstrate the reusable application-level misuse or attack path. Future revisions can add explicit attack scenarios alongside the evidence.
+The terms describe a category, not every vulnerability within it. The [CVE](https://www.cve.org)/[GHSA](https://github.com/advisories) lists in each risk page are strong representative evidence for why the category matters. They are not complete use-case scenarios: an advisory documents a particular affected version and preconditions, while a scenario should demonstrate the reusable application-level misuse or attack path. Future revisions can add explicit attack scenarios alongside the evidence.
 
 ## Applying the list within an application security program
 
