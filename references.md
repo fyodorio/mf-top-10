@@ -6,10 +6,13 @@ This catalog records the sources reviewed for the initial draft. Primary sources
 
 - [OWASP Top 10:2021 Introduction and methodology](https://owasp.org/Top10/2021/A00_2021_Introduction/)
 - [OWASP Risk Rating Methodology](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology)
+- [OWASP Top 10:2025 — Establishing a Modern Application Security Program](https://owasp.org/Top10/2025/0x03_2025-Establishing_a_Modern_Application_Security_Program/)
 - [OWASP API Security Top 10:2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
 - [OWASP Client-Side Security Risks](https://owasp.org/www-project-top-10-client-side-security-risks/)
 - [OWASP Node.js Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html)
 - [OWASP SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
+- [OWASP Project Policy](https://policy.owasp.org/operational/projects)
+- [OWASP Project Procedures](https://owasp.org/www-staff/procedures/projects)
 
 ## Access control and server functions
 
