@@ -8,7 +8,7 @@ These frameworks deliberately merge concerns that used to be separate: UI render
 
 This is a research-backed initial taxonomy, not a quantified prevalence study. The ordering is a practical, provisional priority for reviewers of public, full-stack metaframework applications. It must not be read as a severity scale: a particular `MFR10` finding can be more serious than a particular `MFR01` finding.
 
-The draft favors root causes over symptoms where possible. It places hidden endpoints and server functions under access control; shared-cache failures under routing, rendering, and cache confusion; and AI-assisted development or weak type discipline under design and assurance rather than as standalone vulnerability classes.
+The draft favors root causes over symptoms where possible. For instance, it places hidden endpoints and server functions under access control; shared-cache failures under routing, rendering, and cache confusion; and AI-assisted development or weak type discipline under design and assurance rather than as standalone vulnerability classes (acknowledging their impact nevertheless).
 
 ## The Top 10
 
