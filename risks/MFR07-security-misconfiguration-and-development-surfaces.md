@@ -1,4 +1,4 @@
-# MF07: Security Misconfiguration and Exposed Development Surfaces
+# MFR07: Security Misconfiguration and Exposed Development Surfaces
 
 ## Factors
 
@@ -11,7 +11,7 @@
 
 Security-relevant framework, runtime, adapter, proxy, browser, cloud, and development-server configuration is missing, permissive, inconsistent, or left enabled outside its intended context. Full-stack metaframework applications often have configuration distributed across source code, environment variables, framework files, adapter settings, reverse proxies, CDNs, serverless platforms, and CI/CD.
 
-This category includes exposure of development tooling and operational interfaces. It does not include a secret merely being serialized to a client — that is MF02 — or an out-of-date framework — that is MF08.
+This category includes exposure of development tooling and operational interfaces. It does not include a secret merely being serialized to a client — that is `MFR02` — or an out-of-date framework — that is `MFR08`.
 
 ## Metaframework-specific failure modes
 

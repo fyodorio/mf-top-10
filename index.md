@@ -6,26 +6,26 @@ These frameworks deliberately merge concerns that used to be separate: UI render
 
 ## Status and intended use
 
-This is a research-backed initial taxonomy, not a quantified prevalence study. The ordering is a practical, provisional priority for reviewers of public, full-stack metaframework applications. It must not be read as a severity scale: a particular MF10 finding can be more serious than a particular MF01 finding.
+This is a research-backed initial taxonomy, not a quantified prevalence study. The ordering is a practical, provisional priority for reviewers of public, full-stack metaframework applications. It must not be read as a severity scale: a particular `MFR10` finding can be more serious than a particular `MFR01` finding.
 
 The draft favors root causes over symptoms where possible. It places hidden endpoints and server functions under access control; shared-cache failures under routing, rendering, and cache confusion; and AI-assisted development or weak type discipline under design and assurance rather than as standalone vulnerability classes.
 
 ## The Top 10
 
-1. [MF01: Broken Identity and Access Control Across Routes, Server Functions, and Data APIs](risks/MF01-broken-identity-and-access-control.md)
-2. [MF02: Server–Client Data Boundary Failures](risks/MF02-server-client-data-boundary-failures.md)
-3. [MF03: Injection and Unsafe Client-Side Execution](risks/MF03-injection-and-unsafe-client-side-execution.md)
-4. [MF04: Server-Side Request Forgery and Untrusted Request Origin](risks/MF04-ssrf-and-untrusted-request-origin.md)
-5. [MF05: Routing, Rendering, and Cache Variant Confusion](risks/MF05-routing-rendering-and-cache-variant-confusion.md)
-6. [MF06: Unrestricted Resource Consumption and Concurrency Failures](risks/MF06-resource-consumption-and-concurrency.md)
-7. [MF07: Security Misconfiguration and Exposed Development Surfaces](risks/MF07-security-misconfiguration-and-development-surfaces.md)
-8. [MF08: Supply-Chain and Build/Runtime Integrity Failures](risks/MF08-supply-chain-and-build-runtime-integrity.md)
-9. [MF09: Security Logging, Monitoring, and Endpoint Inventory Failures](risks/MF09-logging-monitoring-and-inventory.md)
-10. [MF10: Insecure Design and Unsafe Business Flows](risks/MF10-insecure-design-and-unsafe-business-flows.md)
+1. [MFR01: Broken Identity and Access Control Across Routes, Server Functions, and Data APIs](risks/MFR01-broken-identity-and-access-control.md)
+2. [MFR02: Server–Client Data Boundary Failures](risks/MFR02-server-client-data-boundary-failures.md)
+3. [MFR03: Injection and Unsafe Client-Side Execution](risks/MFR03-injection-and-unsafe-client-side-execution.md)
+4. [MFR04: Server-Side Request Forgery and Untrusted Request Origin](risks/MFR04-ssrf-and-untrusted-request-origin.md)
+5. [MFR05: Routing, Rendering, and Cache Variant Confusion](risks/MFR05-routing-rendering-and-cache-variant-confusion.md)
+6. [MFR06: Unrestricted Resource Consumption and Concurrency Failures](risks/MFR06-resource-consumption-and-concurrency.md)
+7. [MFR07: Security Misconfiguration and Exposed Development Surfaces](risks/MFR07-security-misconfiguration-and-development-surfaces.md)
+8. [MFR08: Supply-Chain and Build/Runtime Integrity Failures](risks/MFR08-supply-chain-and-build-runtime-integrity.md)
+9. [MFR09: Security Logging, Monitoring, and Endpoint Inventory Failures](risks/MFR09-logging-monitoring-and-inventory.md)
+10. [MFR10: Insecure Design and Unsafe Business Flows](risks/MFR10-insecure-design-and-unsafe-business-flows.md)
 
 ## Ordering rationale
 
-MF01–MF04 cover direct compromise paths: impersonating or exceeding an identity’s authority, exposing server-only data, executing attacker-controlled content, or making the server act as a network client. MF05–MF07 cover the framework’s request-processing lifecycle: variant routing/rendering, resource control, and operational configuration. MF08–MF10 cover integrity, visibility, and the design/assurance conditions that let the other failures persist.
+`MFR01`–`MFR04` cover direct compromise paths: impersonating or exceeding an identity’s authority, exposing server-only data, executing attacker-controlled content, or making the server act as a network client. `MFR05`–`MFR07` cover the framework’s request-processing lifecycle: variant routing/rendering, resource control, and operational configuration. `MFR08`–`MFR10` cover integrity, visibility, and the design/assurance conditions that let the other failures persist.
 
 ## Provisional risk-factor legend
 

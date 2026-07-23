@@ -14,12 +14,12 @@ This roadmap describes the first twelve months of work toward a maintained, evid
 
 Publish and maintain the initial taxonomy, category boundaries, source catalog, roadmap, contribution process, and documentation license.
 
-Create a living crosswalk from each metaframework category to relevant CWEs, adjacent OWASP projects, framework features, and known advisory patterns. Record category inclusion and exclusion decisions, especially where a risk could fit more than one category.
+Create a living crosswalk from each `MFR` category to relevant CWEs, adjacent OWASP projects, framework features, and known advisory patterns. Record category inclusion and exclusion decisions, especially where a risk could fit more than one category.
 
 Define a minimum security review model for metaframework applications:
 
 1. identify assets, actors, trust boundaries, public request variants, data flows, external dependencies, and deployment layers;
-2. identify applicable metaframework categories and abuse cases;
+2. identify applicable `MFR` categories and abuse cases;
 3. select reusable controls and verification activities appropriate to the risk; and
 4. record gaps, remediation owners, and evidence of completion.
 

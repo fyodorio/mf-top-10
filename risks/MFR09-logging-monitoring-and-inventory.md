@@ -1,4 +1,4 @@
-# MF09: Security Logging, Monitoring, and Endpoint Inventory Failures
+# MFR09: Security Logging, Monitoring, and Endpoint Inventory Failures
 
 ## Factors
 
@@ -40,7 +40,7 @@ Metaframework applications can create routes and server capabilities from file s
 
 This category is intentionally CWE-led rather than CVE-led. A missing log, alert, route inventory, or incident runbook is usually not assigned a CVE, yet it directly determines detection, response time, and forensic confidence. OWASP similarly treats logging and monitoring as a Top 10 category despite limited CVE representation.
 
-Published cache-poisoning, alternate-route, and development-surface advisories throughout MF01, MF05, and MF07 demonstrate why a metaframework-specific endpoint and variant inventory is necessary.
+Published cache-poisoning, alternate-route, and development-surface advisories throughout `MFR01`, `MFR05`, and `MFR07` demonstrate why a metaframework-specific endpoint and variant inventory is necessary.
 
 ## Sources
 

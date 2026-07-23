@@ -19,7 +19,7 @@ For a proposed advisory example, include:
 
 1. a stable primary-source URL;
 2. the affected framework/package, version range, and relevant deployment or feature preconditions;
-3. the proposed MF category and relevant CWE mapping;
+3. the proposed `MFR` category and relevant CWE mapping;
 4. a short explanation of the reusable root cause; and
 5. why the evidence belongs in this category instead of, or in addition to, another one.
 
