@@ -6,7 +6,7 @@
 
 ## Why this work exists
 
-General web, API, and client-side security guidance is essential, but it does not organize the shared trust-boundary failures of frameworks such as Next.js, Nuxt, Astro, SvelteKit, React Router framework mode, TanStack Start, and SolidStart in one place. Their convenience features can turn a page into an API, a component into a server capability, or an internal transport into a public request variant.
+General [web](https://owasp.org/www-project-top-ten/), [API](https://owasp.org/API-Security/), and [client-side](https://owasp.org/www-project-top-10-client-side-security-risks/) security guidance is essential, but it does not organize the shared trust-boundary failures of frameworks such as [Next.js](https://nextjs.org), [Nuxt](https://nuxt.com), [Astro](https://astro.build), [SvelteKit](https://svelte.dev/docs/kit/introduction), [Remix](https://remix.run), [TanStack Start](https://tanstack.com/start/latest), and [SolidStart](https://start.solidjs.com) in one place. Their convenience features can turn a page into an API, a component into a server capability, or an internal transport into a public request variant.
 
 The project identifies those patterns, connects them to established weakness taxonomies and published advisories, and provides prevention and verification guidance that teams can apply throughout design, development, deployment, and operations.
 
@@ -14,7 +14,7 @@ The project identifies those patterns, connects them to established weakness tax
 
 The project will deliver:
 
-- a maintained, prioritized Top 10 awareness taxonomy;
+- a maintained, prioritized [Top 10 awareness taxonomy](index.md#the-top-10);
 - a detailed risk page for each category, including CWE mappings and representative evidence;
 - practical prevention and verification guidance for full-stack metaframework applications;
 - a transparent evidence and data-collection method for future revisions;
