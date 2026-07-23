@@ -43,7 +43,7 @@ Reviews focus on accuracy, scope fit, source quality, clarity, reproducibility, 
 
 ## Developer Certificate of Origin
 
-Contributions must be the contributor’s original work or work they are authorized to submit. Sign every commit with the Developer Certificate of Origin (DCO) sign-off:
+Contributions must be the contributor’s original work or work they are authorized to submit. Sign every commit with the [Developer Certificate of Origin (DCO)](https://github.com/apps/dco) sign-off:
 
 `git commit -s -m "Describe the change"`
 
