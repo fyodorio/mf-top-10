@@ -40,7 +40,10 @@ Metaframework applications can create routes and server capabilities from file s
 
 This category is intentionally CWE-led rather than CVE-led. A missing log, alert, route inventory, or incident runbook is usually not assigned a CVE, yet it directly determines detection, response time, and forensic confidence. OWASP similarly treats logging and monitoring as a Top 10 category despite limited CVE representation.
 
-Published cache-poisoning, alternate-route, and development-surface advisories throughout `MFR01`, `MFR05`, and `MFR07` demonstrate why a metaframework-specific endpoint and variant inventory is necessary.
+Published cache-poisoning, alternate-route, and development-surface advisories throughout `MFR01`, `MFR05`, and `MFR07` demonstrate why a metaframework-specific endpoint and variant inventory is necessary. Two advisories bear directly on inventory rather than on a data-flow or authorization defect:
+
+- [CVE-2026-64643](https://github.com/advisories/GHSA-955p-x3mx-jcvp): affected Next.js App Router builds disclosed Server Action and `use cache` endpoint identifiers to unauthenticated clients. The advisory’s stated impact is reconnaissance and use within a broader attack chain — the inverse of the defender’s inventory problem, since the attacker enumerated a surface the application owner may not have documented.
+- [GHSA-hxcr-hm88-mpq6](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxcr-hm88-mpq6): Nuxt island endpoint identifiers are predictable, non-secret digests, so an island is reachable without being linked. Obscurity is not an inventory boundary and does not remove the endpoint from the monitored surface.
 
 ## Sources
 
