@@ -20,6 +20,8 @@ The rendering model increases the number of contexts to examine: server-rendered
 - Assuming server-side rendering makes client-side XSS impossible.
 - Building SQL/NoSQL queries, filesystem paths, commands, dynamic imports, or templates from route/query/form input.
 - Trusting third-party client code or named DOM properties without considering DOM clobbering.
+- Forwarding request-supplied values into a dynamic component resolver, polymorphic root, or runtime template compiler — explicitly, or implicitly through attribute fallthrough of props the component never declared.
+- Enabling a runtime template compiler or other code-generating option in a server-rendering path, which turns any reachable string property into a code sink.
 
 ## Prevention and verification priorities
 
@@ -43,6 +45,8 @@ The rendering model increases the number of contexts to examine: server-rendered
 - [CVE-2024-47885](https://github.com/advisories/GHSA-m85w-3h95-hcf9): an Astro client-router DOM-clobbering gadget could produce XSS when untrusted scriptless markup was present.
 - [CVE-2025-64764](https://zhero-web-sec.github.io/research-and-things/unlocking-reflected-xss-in-the-astro-framework): published Astro reflected-XSS research.
 - [CVE-2026-44581](https://github.com/advisories/GHSA-ffhc-5mcf-pf4q): malformed request-derived CSP nonce data could result in stored XSS in affected Next.js App Router deployments behind shared caches.
+- [GHSA-9473-5f9j-94wq](https://github.com/nuxt/nuxt/security/advisories/GHSA-9473-5f9j-94wq): with Vue’s runtime compiler enabled, an injected `template` key in Nuxt server-island props was compiled and executed in the server process, producing remote code execution rather than client-side XSS.
+- [GHSA-48hr-524c-v5w3](https://github.com/nuxt/nuxt/security/advisories/GHSA-48hr-524c-v5w3): undeclared Nuxt island props reaching a polymorphic component root allowed instantiation of arbitrary HTML elements or globally registered components.
 
 ## Sources
 
