@@ -30,4 +30,5 @@ The first year focuses on establishing the taxonomy and evidence model, validati
 - [View the project roadmap](roadmap.md)
 - [Contribute research or improvements](contributing.md)
 - [Review research references](references.md)
+- [Maintain the evidence base](maintenance.md)
 - [License: CC BY-SA 4.0](LICENSE)

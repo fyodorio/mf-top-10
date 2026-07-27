@@ -40,6 +40,8 @@ Technical impact is deliberately **not** called severity. In common risk-rating 
 
 The terms describe a category, not every vulnerability within it. The [CVE](https://www.cve.org)/[GHSA](https://github.com/advisories) lists in each risk page are strong representative evidence for why the category matters. They are not complete use-case scenarios: an advisory documents a particular affected version and preconditions, while a scenario should demonstrate the reusable application-level misuse or attack path. Future revisions can add explicit attack scenarios alongside the evidence.
 
+An entry cited by GHSA identifier alone simply has no CVE assigned, which is an administrative state rather than a judgement about its severity or exploitability. The evidence lists are also not ordered or filtered by observed exploitation; see [citing advisories](references.md#citing-advisories) for the convention and the sources to consult for that question.
+
 ## Applying the list within an application security program
 
 Use the Top 10 as an awareness and prioritization aid, then tailor it to the applications, APIs, data assets, threat actors, deployment models, and business tolerance for risk in scope. Establish a consistent risk model, define reusable security controls, and integrate security activities into existing work rather than treating the list as a one-time checklist.
@@ -52,4 +54,4 @@ For each application or service, teams should:
 4. verify controls with review, automated testing, dynamic testing, and production-like infrastructure tests; and
 5. measure coverage, findings, remediation, and recurring root causes to improve the program over time.
 
-See the [roadmap](roadmap.md) for the evidence model and planned work, [contribution guidance](contributing.md) to participate, and [research references](references.md) for sources.
+See the [roadmap](roadmap.md) for the evidence model and planned work, [contribution guidance](contributing.md) to participate, [research references](references.md) for sources, and the [maintenance guide](maintenance.md) for how cited evidence is kept current.

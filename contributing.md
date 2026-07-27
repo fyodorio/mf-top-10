@@ -23,6 +23,16 @@ For a proposed advisory example, include:
 4. a short explanation of the reusable root cause; and
 5. why the evidence belongs in this category instead of, or in addition to, another one.
 
+### Advisory identifiers
+
+Cite the CVE identifier if one is assigned, otherwise the GHSA identifier — one identifier per label, never both. Link to `https://github.com/advisories/GHSA-…` once the advisory is in the GitHub Advisory Database, and to the maintainer’s repository advisory page until then; the repository URL remains valid afterward.
+
+A missing CVE identifier is an administrative state, not a property of the vulnerability. Maintainers request CVEs per advisory, and some decline to for lower-severity or development-only issues, so an advisory can be permanent, severe, and thoroughly documented without one. Do not label evidence as more or less serious, more or less exploited, or more or less responsibly disclosed based on which identifier it carries.
+
+Nor should the evidence lists be annotated with exploitation status. Whether a weakness is being exploited changes after publication and is tracked authoritatively elsewhere — the [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) for confirmed exploitation and [EPSS](https://www.first.org/epss/) for probability. Cite either only where it changes what a reader should do, as `MFR08` does for `CVE-2025-55182`, and date the claim.
+
+Because these states change without any edit to this repository, they are re-checked on a schedule rather than tracked in prose. `scripts/check-advisories.py` reports citations that need updating, new KEV entries, and broken links; the [maintenance guide](maintenance.md) explains each check and the cadence.
+
 Do not submit customer data, secrets, private vulnerability reports, exploit payloads, or instructions that could harm a live system. Use responsible disclosure channels for unpatched vulnerabilities.
 
 ## Scope and category changes
@@ -37,7 +47,7 @@ New categories need evidence that the existing taxonomy cannot represent the pro
 2. Open an issue or discussion for significant taxonomy, methodology, or roadmap changes before drafting a large pull request.
 3. Keep a pull request focused. Cite sources inline and update the references catalog when adding material evidence.
 4. Explain what changed, why it matters, and any assumptions, limitations, or unresolved questions.
-5. Verify local Markdown links and headings before requesting review.
+5. Verify local Markdown links and headings before requesting review, and run `python3 scripts/check-advisories.py --links` when the change adds or edits a citation. Read the [maintenance guide](maintenance.md) first: some reported statuses need judgement rather than an edit.
 
 Reviews focus on accuracy, scope fit, source quality, clarity, reproducibility, licensing, and whether the proposed change improves practical security outcomes.
 
