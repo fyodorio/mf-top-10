@@ -20,11 +20,12 @@ The category covers both known vulnerable components and integrity failures. “
 - Build/deploy pipeline artifacts not pinned, verified, reviewed, or reproducible.
 - Third-party browser scripts granted same-origin access without origin control, CSP, SRI where applicable, or runtime change monitoring.
 - Deserialization or component-protocol defects in an upstream framework runtime.
+- A security update that closes the reported case but not the underlying class, leaving a variant path exploitable in a version the inventory reports as patched.
 
 ## Prevention and verification priorities
 
 1. Maintain an SBOM and lockfiles; pin and regularly update frameworks, adapters, runtimes, and transitive dependencies.
-2. Run SCA/advisory checks in CI and production inventory; triage exploitability rather than blindly suppressing or upgrading.
+2. Run SCA/advisory checks in CI and production inventory; triage exploitability rather than blindly suppressing or upgrading. Track advisory revisions and incomplete-fix follow-ups, and re-test the reported variant after upgrading rather than treating the version bump as proof.
 3. Minimize dependencies with privileged build/runtime access; assess maintainer health, provenance, install hooks, and required permissions.
 4. Protect package publishing and CI with MFA, least privilege, short-lived credentials, branch protection, artifact provenance, and deployment approval.
 5. Restrict third-party client code with CSP, origin allowlists, SRI where a stable external asset is used, and change monitoring.
@@ -39,9 +40,10 @@ The category covers both known vulnerable components and integrity failures. “
 
 ## Representative evidence
 
-- [CVE-2025-55182](https://github.com/advisories/GHSA-9qr9-h5gf-34mp): a critical React Server Components deserialization issue affected frameworks including Next.js App Router deployments.
+- [CVE-2025-55182](https://github.com/advisories/GHSA-9qr9-h5gf-34mp): a critical React Server Components deserialization issue affected frameworks including Next.js App Router deployments. It is the only advisory cited in this document that appears in the [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog), added 2025-12-05 with known ransomware-campaign use and a seven-day federal remediation deadline. An upstream runtime defect in a shared serialization protocol is the supply-chain case with the widest blast radius, because every application built on the runtime inherits it regardless of its own code quality.
 - [CVE-2025-59143](https://github.com/advisories/GHSA-qrmh-qg46-72pp): an npm account takeover introduced malware into `color@5.0.1`, affecting browser bundles built by common JavaScript tooling.
 - [CVE-2024-47885](https://github.com/advisories/GHSA-m85w-3h95-hcf9): an Astro client-router defect illustrates that a framework runtime is part of the application’s attack surface.
+- [GHSA-hxvh-4h3w-prp9](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxvh-4h3w-prp9): published as an incomplete fix for `CVE-2026-53721`, it shows that an inventory recording a patched version is not evidence that the reported weakness is closed. See `MFR01` for the access-control impact.
 
 ## Sources
 
