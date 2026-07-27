@@ -20,13 +20,15 @@ Middleware and route guards are useful for optimistic redirects, coarse filterin
 - Checking authentication but not object ownership, tenant scope, role, or property-level permissions.
 - Binding untrusted request input directly to persistence objects, allowing privileged properties to be set.
 - Relying on client-side route guards, hidden buttons, unlinked endpoints, or obscured URLs as authorization.
+- Declaring an authorization rule in a matcher that normalizes paths differently from the router — case, trailing slash, encoding, or locale prefix — so the rule silently never matches the request it was written for.
+- Assuming a rule verified under one build pipeline behaves identically under another bundler, adapter, or runtime target.
 
 ## Prevention and verification priorities
 
 1. Make the server-side data/service layer the policy enforcement point; deny by default.
 2. Authenticate and authorize every server function/action, route handler, loader, API endpoint, and data mutation independently.
 3. Enforce object, tenant, function, and property-level authorization; use explicit request/response schemas and field allowlists.
-4. Treat middleware as defense in depth. Exercise alternate routes, framework data requests, locale routes, prefetched segments, and direct requests in authorization tests.
+4. Treat middleware as defense in depth. Exercise alternate routes, framework data requests, locale routes, prefetched segments, case- and encoding-variant paths, and direct requests in authorization tests.
 5. Test as unauthenticated, low-privilege, cross-tenant, and cross-object actors. Include negative tests for every sensitive operation.
 
 ## Relevant CWEs
@@ -36,6 +38,7 @@ Middleware and route guards are useful for optimistic redirects, coarse filterin
 - [CWE-639: Authorization Bypass Through User-Controlled Key](https://cwe.mitre.org/data/definitions/639.html)
 - [CWE-862: Missing Authorization](https://cwe.mitre.org/data/definitions/862.html)
 - [CWE-863: Incorrect Authorization](https://cwe.mitre.org/data/definitions/863.html)
+- [CWE-178: Improper Handling of Case Sensitivity](https://cwe.mitre.org/data/definitions/178.html)
 - [CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes](https://cwe.mitre.org/data/definitions/915.html)
 
 ## Representative evidence
@@ -44,6 +47,8 @@ Middleware and route guards are useful for optimistic redirects, coarse filterin
 - [CVE-2026-44575](https://github.com/advisories/GHSA-267c-6grr-h53f): App Router segment-prefetch variants bypassed middleware/proxy authorization in affected Next.js releases.
 - [CVE-2026-44573](https://github.com/advisories/GHSA-36qx-fr4f-26g5): locale-less Pages Router data routes bypassed middleware authorization in affected Next.js applications.
 - [CVE-2026-46342](https://github.com/advisories/GHSA-g8wj-3cr3-6w7v): Nuxt island routes require authorization in the island data layer because page middleware does not apply to island rendering.
+- [CVE-2026-53721](https://github.com/advisories/GHSA-mm7m-92g8-7m47) and [GHSA-hxvh-4h3w-prp9](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxvh-4h3w-prp9): a case-sensitivity mismatch between the Nuxt router and the `routeRules` matcher silently dropped `appMiddleware` authorization gates for mixed-case rule keys. The second advisory is an incomplete-fix follow-up to the first, so the rule remained unenforced after the initial patch.
+- [CVE-2026-64642](https://github.com/advisories/GHSA-6gpp-xcg3-4w24): Next.js App Router applications built with Turbopack and a single configured locale bypassed middleware/proxy checks, showing that the build pipeline can change whether an authorization rule runs at all.
 
 ## Sources
 
