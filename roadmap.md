@@ -68,6 +68,8 @@ Issue a versioned release containing:
 
 Maintain a public backlog, respond to evidence and correction submissions, review new framework advisories, and publish periodic status updates. Track project health through meaningful indicators: contributor diversity, evidence quality, framework coverage, review turnaround, release cadence, and unresolved research gaps.
 
+Advisory records change after this project cites them: identifiers are assigned, records propagate between databases, exploitation status becomes known, and links rot. Re-check cited evidence on a schedule rather than assuming a published citation stays accurate — `scripts/check-advisories.py` automates the detection, and the [maintenance guide](maintenance.md) defines the checks and cadence.
+
 Use findings and feedback to improve the project’s reusable guidance. The goal is not to maximize category count or vulnerability volume; it is to help teams apply the most useful controls at the right points in their software lifecycle.
 
 ## Related documents
@@ -75,3 +77,4 @@ Use findings and feedback to improve the project’s reusable guidance. The goal
 - [Detailed taxonomy](index.md)
 - [Contribution guidance](contributing.md)
 - [Research references](references.md)
+- [Maintenance guide](maintenance.md)
