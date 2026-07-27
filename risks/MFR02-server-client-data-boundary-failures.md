@@ -42,6 +42,7 @@ This category is not limited to secrets. Excessive fields, internal identifiers,
 - [CVE-2025-55183](https://github.com/advisories/GHSA-w37m-7fhw-fmv9): affected React Server Components/Next.js server functions could disclose compiled server-function source and business logic.
 - [CVE-2026-44575](https://github.com/advisories/GHSA-267c-6grr-h53f): an alternate Next.js transport route could expose protected page content when middleware alone supplied authorization.
 - [CVE-2025-24360](https://github.com/advisories/GHSA-2452-6xj8-jh47): Nuxt development-server CORS defaults could expose local source to a malicious origin.
+- [CVE-2026-64643](https://github.com/advisories/GHSA-955p-x3mx-jcvp): affected Next.js App Router builds globally disclosed Server Action and `use cache` endpoint identifiers to unauthenticated clients, exposing part of the server-function surface to any visitor.
 
 ## Sources
 
