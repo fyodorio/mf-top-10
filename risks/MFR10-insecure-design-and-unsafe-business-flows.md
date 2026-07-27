@@ -42,6 +42,7 @@ This category captures business-logic and workflow abuse that does not fit a nar
 - [CVE-2025-29927](https://github.com/advisories/GHSA-f82v-jwr5-mffw) shows the design risk of treating a routing middleware as the only authorization boundary.
 - [CVE-2024-34351](https://github.com/advisories/GHSA-fr5h-rqp8-mj6g) shows why Server Actions need explicit origin, redirect, and egress design rather than implicit framework trust.
 - [CVE-2025-67647](https://github.com/advisories/GHSA-j62c-4x62-9r35) demonstrates how prerendering, host validation, origin configuration, and caching can combine into an application-level attack path.
+- [CVE-2026-64649](https://github.com/advisories/GHSA-89xv-2m56-2m9x), recurring in the same class as `CVE-2024-34351` roughly two years later, shows that a design which delegates origin and egress trust to framework defaults will keep producing findings as the runtime changes. The application needs its own stated policy for which hosts the server may be told to contact.
 
 ## Sources
 
