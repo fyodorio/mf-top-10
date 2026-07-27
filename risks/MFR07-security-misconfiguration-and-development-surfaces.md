@@ -20,12 +20,15 @@ This category includes exposure of development tooling and operational interface
 - Missing or overly broad CSP, frame protection, cookie flags, permissions policy, TLS, security headers, or cache directives.
 - Production builds running with development behavior or verbose errors; default credentials or unreviewed environment fallbacks.
 - Serverless/edge adapters with unbounded permissions, public storage, overbroad service credentials, or absent egress policy.
+- Locality or origin decisions inferred from request headers such as `Sec-Fetch-Site`, `Origin`, or `Referer`, which a non-browser client can simply omit, instead of from the peer address or an authenticated token.
+- Development-tool control channels — inspector RPC, hot-reload sockets, editor-launch hooks — reachable without authentication from another local process, a LAN peer, or a page the developer visits while the server runs.
+- Security-relevant behavior that differs by bundler, compiler, adapter, or runtime target, so configuration validated under one build pipeline is untested under the one actually deployed.
 
 ## Prevention and verification priorities
 
 1. Define production-safe defaults in versioned configuration and review changes as security-sensitive code.
 2. Separate development, test, preview, and production credentials, origins, data, and network access; do not expose development tools publicly.
-3. Validate hosts and forwarded headers at the first trusted proxy; configure CORS per route and credential mode, never by convenience.
+3. Validate hosts and forwarded headers at the first trusted proxy; configure CORS per route and credential mode, never by convenience. Base a “local only” decision on the connecting peer address, and authenticate every development control channel.
 4. Set and test browser security headers, secure cookie attributes, error handling, source-map policy, and cache-control on the deployed platform.
 5. Scan running environments, not just repository files, for exposed ports, routes, artifacts, and permissive cloud/IAM configuration.
 
@@ -36,12 +39,16 @@ This category includes exposure of development tooling and operational interface
 - [CWE-942: Permissive Cross-domain Policy with Untrusted Domains](https://cwe.mitre.org/data/definitions/942.html)
 - [CWE-215: Insertion of Sensitive Information Into Debugging Code](https://cwe.mitre.org/data/definitions/215.html)
 - [CWE-798: Use of Hard-coded Credentials](https://cwe.mitre.org/data/definitions/798.html)
+- [CWE-306: Missing Authentication for Critical Function](https://cwe.mitre.org/data/definitions/306.html)
+- [CWE-290: Authentication Bypass by Spoofing](https://cwe.mitre.org/data/definitions/290.html)
 
 ## Representative evidence
 
 - [CVE-2025-24360](https://github.com/advisories/GHSA-2452-6xj8-jh47): Nuxt’s development CORS behavior could allow a malicious site to read local development-server responses.
 - [CVE-2024-23657](https://github.com/advisories/GHSA-rcvg-rgf7-pppv): Nuxt Devtools path traversal and origin issues could expose local files and, in some configurations, enable code execution.
 - [CVE-2024-34344](https://github.com/advisories/GHSA-v784-fjjh-f8r4): Nuxt test-mode component loading could execute attacker-controlled code in a developer environment.
+- [GHSA-279x-mwfv-vcqv](https://github.com/nuxt/nuxt/security/advisories/GHSA-279x-mwfv-vcqv): an unauthenticated Nuxt DevTools RPC method exposed over the Vite hot-reload socket allowed arbitrary command execution on a developer machine, reachable from a local process, a LAN peer when the server was bound to an interface, or a malicious site visited while the development server ran.
+- [GHSA-7c4v-fwgw-9rf7](https://github.com/nuxt/nuxt/security/advisories/GHSA-7c4v-fwgw-9rf7): a Nuxt development endpoint treated a request lacking `Sec-Fetch-Site`, `Origin`, and `Referer` as local, disclosing the project path and workspace identifier; the fix validates the connecting peer address instead of request headers.
 
 ## Sources
 
