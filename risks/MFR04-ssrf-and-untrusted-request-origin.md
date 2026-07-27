@@ -19,6 +19,7 @@ Metaframework adapters regularly reconstruct requests from `Host` and `X-Forward
 - Trusting `Host`, `X-Forwarded-Host`, `X-Forwarded-Proto`, or port headers from arbitrary clients rather than a known proxy.
 - Building callback, redirect, fetch, or asset URLs from `request.url` without validating origin.
 - Following redirect chains after validating only the initial URL.
+- Building a rewrite, redirect, or proxy destination from request input and relying on a hostname suffix or substring match as though it were an origin allowlist.
 - Exposing self-hosted framework servers directly without ingress host validation and egress restrictions.
 
 ## Prevention and verification priorities
@@ -42,6 +43,8 @@ Metaframework adapters regularly reconstruct requests from `Host` and `X-Forward
 - [CVE-2024-42352](https://github.com/advisories/GHSA-cxgv-px37-4mp2): Nuxt Icon path parsing enabled SSRF.
 - [CVE-2025-64525](https://github.com/advisories/GHSA-hr2q-hp5q-x767): Astro URL construction from untrusted forwarding headers enabled SSRF and middleware bypasses.
 - [CVE-2025-67647](https://github.com/advisories/GHSA-j62c-4x62-9r35): a SvelteKit prerendering configuration could enable SSRF and denial of service.
+- [CVE-2026-64645](https://github.com/advisories/GHSA-p9j2-gv94-2wf4): a Next.js `rewrites()` or `redirects()` rule whose external destination hostname came from request input could be pointed at an arbitrary host despite the rule’s hostname suffix — SSRF for rewrites, open redirect for redirects.
+- [CVE-2026-64649](https://github.com/advisories/GHSA-89xv-2m56-2m9x): Next.js Server Actions on custom servers could be made to forward or redirect an outbound request to an attacker-chosen host through Host-associated headers, recurring in the same class as `CVE-2024-34351`.
 
 ## Sources
 
