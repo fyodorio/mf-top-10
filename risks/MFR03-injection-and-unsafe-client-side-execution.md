@@ -22,6 +22,8 @@ The rendering model increases the number of contexts to examine: server-rendered
 - Trusting third-party client code or named DOM properties without considering DOM clobbering.
 - Forwarding request-supplied values into a dynamic component resolver, polymorphic root, or runtime template compiler — explicitly, or implicitly through attribute fallthrough of props the component never declared.
 - Enabling a runtime template compiler or other code-generating option in a server-rendering path, which turns any reachable string property into a code sink.
+- Assembling head or metadata tags, hydration bootstraps, or component-transport payloads by string interpolation, so a first-class framework API becomes an unescaped HTML sink.
+- Guarding an inline `<script>` or HTML context with a literal string check for a closing tag, which case variation, whitespace, or a self-closing form defeats.
 
 ## Prevention and verification priorities
 
@@ -47,6 +49,9 @@ The rendering model increases the number of contexts to examine: server-rendered
 - [CVE-2026-44581](https://github.com/advisories/GHSA-ffhc-5mcf-pf4q): malformed request-derived CSP nonce data could result in stored XSS in affected Next.js App Router deployments behind shared caches.
 - [GHSA-9473-5f9j-94wq](https://github.com/nuxt/nuxt/security/advisories/GHSA-9473-5f9j-94wq): with Vue’s runtime compiler enabled, an injected `template` key in Nuxt server-island props was compiled and executed in the server process, producing remote code execution rather than client-side XSS.
 - [GHSA-48hr-524c-v5w3](https://github.com/nuxt/nuxt/security/advisories/GHSA-48hr-524c-v5w3): undeclared Nuxt island props reaching a polymorphic component root allowed instantiation of arbitrary HTML elements or globally registered components.
+- [GHSA-pq96-jpmf-w254](https://github.com/quasarframework/quasar/security/advisories/GHSA-pq96-jpmf-w254): Quasar’s SSR `getHead()` serialized meta, link, script, and title data into a raw HTML string with plain template interpolation. The sink is `useMeta()`, the documented way an application sets page metadata, so ordinary use of a first-class API produced the injection.
+- [CVE-2026-50146](https://github.com/advisories/GHSA-8hv8-536x-4wqp) and [CVE-2026-41067](https://github.com/advisories/GHSA-j687-52p2-xcff): an unescaped slot name, and an incomplete `</script>` guard in `define:vars`, produced XSS in affected Astro releases. The second is the recurring failure mode of a sanitizer written as a literal string comparison — the guard was case-sensitive and defeated by whitespace variants.
+- [CVE-2026-25148](https://github.com/advisories/GHSA-m6jq-g7gq-5w3c): Qwik’s SSR serialization of virtual nodes was unsafe, placing the injection in the resumability transport rather than in a template.
 
 ## Sources
 

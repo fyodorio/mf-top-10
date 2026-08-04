@@ -20,6 +20,10 @@ An attacker can consume disproportionate compute, memory, storage, connections, 
 - User-controlled calls to paid services such as AI, email, SMS, geocoding, storage, or external APIs without budget controls.
 - Expensive decoding, parsing, hashing, or signature computation performed on the request before cheap invariants such as size, nesting depth, or element count are checked, so an eventual rejection still costs the server its work.
 - Request-supplied counts, ranges, or iteration bounds expanded during server rendering, allowing a very small request to allocate a very large amount of memory.
+- A buffer allocated from a client-declared length before the corresponding bytes have arrived, so a small request plus a stalled connection reserves memory it never fills.
+- A framework or plugin parsing an unbounded request header on every render — user agent, accept, forwarded — with a backtracking regular expression, on a single-threaded event loop.
+- A configured limit enforced by a layer other than the one that reads the body, so the adapter, runtime, or edge bypasses it.
+- A newly introduced request encoding, streaming format, or server-function transport shipped without the size, depth, and element-count limits already applied to established ones.
 
 ## Prevention and verification priorities
 
@@ -50,6 +54,12 @@ An attacker can consume disproportionate compute, memory, storage, connections, 
 - [GHSA-hxcr-hm88-mpq6](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxcr-hm88-mpq6): an unvalidated iteration count in a Nuxt island `v-for` let a request of roughly 130 bytes exhaust memory and crash the rendering worker.
 - [GHSA-9pgf-384g-p7mv](https://github.com/nuxt/nuxt/security/advisories/GHSA-9pgf-384g-p7mv): the Nuxt island endpoint decoded and hashed an unauthenticated request body before validating the hash in the URL, so an oversized payload consumed CPU on the single-threaded event loop before being rejected.
 - [CVE-2026-64644](https://github.com/advisories/GHSA-q8wf-6r8g-63ch): where remote images were permitted, the Next.js Image Optimization API could be driven to CPU exhaustion on `/_next/image` by malicious image content.
+- SvelteKit’s remote-function deserializer produced five advisories in six months — [CVE-2026-22803](https://github.com/advisories/GHSA-j2f3-wq62-6q46), [GHSA-88qp-p4qg-rqm6](https://github.com/advisories/GHSA-88qp-p4qg-rqm6), [GHSA-vrhm-gvg7-fpcf](https://github.com/advisories/GHSA-vrhm-gvg7-fpcf), [GHSA-fpg4-jhqr-589c](https://github.com/advisories/GHSA-fpg4-jhqr-589c), and [GHSA-wqjv-9729-c5q2](https://github.com/advisories/GHSA-wqjv-9729-c5q2) — covering memory amplification, CPU exhaustion, deserialization expansion, and process crashes. In the first, a small request declares a large body length and then stalls the connection, and the buffer is allocated eagerly to accommodate data that never arrives. A newly introduced request-body format is a new resource-limit surface, and one advisory against it is unlikely to be the last.
+- [CVE-2026-29772](https://github.com/advisories/GHSA-3rmj-9m5h-8fpv) and [CVE-2026-27729](https://github.com/advisories/GHSA-jm64-8m5q-4qh8): affected Astro releases applied no request-body size limit to Server Islands or to Server Actions. Two transports, one missing limit — evidence that a limit must be enumerated per transport rather than assumed to be global.
+- [CVE-2026-40073](https://github.com/advisories/GHSA-2crg-3p73-43xp): `BODY_SIZE_LIMIT` could be bypassed in `@sveltejs/adapter-node`, so a limit that was configured was not the limit enforced.
+- [GHSA-68jq-fhch-4xq4](https://github.com/quasarframework/quasar/security/advisories/GHSA-68jq-fhch-4xq4): Quasar auto-installs its `Platform` plugin on every server-side render, feeding the raw, unbounded `User-Agent` header into backtracking regular expressions whose cost is cubic in header length. The advisory measures an 8 KB header blocking the event loop for about 4.4 seconds and a 16 KB header for about 35 — a single unauthenticated request, against a plugin the application did not opt into.
+- [CVE-2026-32701](https://github.com/advisories/GHSA-whhv-gg5v-864r): Qwik City’s FormData processing permitted array-method pollution, producing type confusion and denial of service.
+- [CVE-2026-34077](https://github.com/advisories/GHSA-rxv8-25v2-qmq8): React Router single-fetch responses reflected user input in a way that enabled denial of service.
 
 ## Sources
 

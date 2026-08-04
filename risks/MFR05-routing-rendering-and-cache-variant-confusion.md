@@ -21,6 +21,8 @@ The result can be authorization bypass, content confusion, cache poisoning, stor
 - A response changes by request header but `Vary`, cache-control, and CDN behavior do not partition it.
 - Pages intended for one rendering mode are coerced into another by request metadata, or cache revalidation shares state incorrectly.
 - A framework-internal data, payload, or `fetch` cache keys on the URL alone, ignoring the request body, method, headers, cookies, or authorization state, or deriving the key through a lossy encoding that lets distinct inputs collide.
+- A conditional-request or content-negotiation header the application never reads still changes what the origin returns or whether the response is cacheable.
+- Cacheability is decided by the deployment adapter rather than the framework router, so the same application code behaves differently per platform and only the deployed combination can be tested.
 
 ## Prevention and verification priorities
 
@@ -48,6 +50,10 @@ The result can be authorization bypass, content confusion, cache poisoning, stor
 - [CVE-2026-44576](https://github.com/advisories/GHSA-wfc6-r584-vfw7): Next.js RSC responses could poison shared cache entries that did not correctly partition variants.
 - [GHSA-wm8w-6qjm-cv43](https://github.com/nuxt/nuxt/security/advisories/GHSA-wm8w-6qjm-cv43): affected Nuxt releases stored the `_payload.json` of a cached route under a path-only key with no cookie, authorization, or `cache.varies` dimension, so one authenticated user’s server-rendered data was served to other users and to unauthenticated clients. The advisory also requires purging CDN and edge caches after upgrading.
 - [CVE-2026-64648](https://github.com/advisories/GHSA-68g3-v927-f742) and [CVE-2026-64647](https://github.com/advisories/GHSA-4633-3j49-mh5q): a server-side `fetch` in affected Next.js releases could return a cached response body belonging to a different request to the same URL, because the cache key ignored the request body, or derived it through an encoding in which distinct byte sequences collided.
+- [CVE-2026-41322](https://github.com/advisories/GHSA-c57f-mm3j-27q9): a malformed `if-match` header was handled incorrectly in affected Astro releases, producing a cacheable response for a request the origin should have rejected. A conditional-request header is part of the cache key surface even when the application never reads it.
+- [CVE-2026-27118](https://github.com/advisories/GHSA-9pq4-5hcf-288c): cache poisoning in `@sveltejs/adapter-vercel`, where the deployment adapter rather than the framework router determined what was cacheable — so the same application code carries different cache behavior per adapter.
+- [CVE-2025-43865](https://github.com/advisories/GHSA-cpj6-fhp6-mr6j) and [CVE-2025-31137](https://github.com/advisories/GHSA-4q56-crqp-v477): React Router pre-render data spoofing, and URL manipulation through `Host` and `X-Forwarded-Host`, both reached through request metadata that the router treated as trustworthy.
+- [CVE-2026-44457](https://github.com/advisories/GHSA-p77w-8qqv-26rm): a cache middleware ignored `Vary: Authorization` and `Vary: Cookie`, serving one user’s response to another. Cited because Astro’s composable pipeline can place Hono in a metaframework request path; see the [scope note](../references.md#scope-note-on-frameworks-cited).
 
 ## Sources
 

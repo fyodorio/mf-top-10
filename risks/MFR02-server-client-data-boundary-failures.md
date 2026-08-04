@@ -20,6 +20,7 @@ This category is not limited to secrets. Excessive fields, internal identifiers,
 - Implicit serialization of properties that were never meant for a client component or hydration payload.
 - Exposing source maps, verbose errors, stack traces, server function source, build metadata, or development endpoints.
 - Trusting client-held state or a hydrated authorization flag when making server-side decisions.
+- Holding per-request data in module scope, a shared renderer context, or a batching primitive, so concurrent requests from different users can observe one another’s values.
 
 ## Prevention and verification priorities
 
@@ -28,6 +29,7 @@ This category is not limited to secrets. Excessive fields, internal identifiers,
 3. Classify every environment variable by exposure; use framework-supported public prefixes only for values safe to publish.
 4. Inspect initial HTML, JSON/RSC/island payloads, client bundles, errors, and source maps as an unauthenticated and low-privilege user.
 5. Re-authorize on the server; never accept a client-hydrated role, price, owner, or feature state as authoritative.
+6. Scope per-request state to the request. Test concurrent requests from different identities against batched, streamed, and cached data paths, and treat a shared renderer or module-scope value as a cross-user disclosure risk until proven otherwise.
 
 ## Relevant CWEs
 
@@ -43,6 +45,9 @@ This category is not limited to secrets. Excessive fields, internal identifiers,
 - [CVE-2026-44575](https://github.com/advisories/GHSA-267c-6grr-h53f): an alternate Next.js transport route could expose protected page content when middleware alone supplied authorization.
 - [CVE-2025-24360](https://github.com/advisories/GHSA-2452-6xj8-jh47): Nuxt development-server CORS defaults could expose local source to a malicious origin.
 - [CVE-2026-64643](https://github.com/advisories/GHSA-955p-x3mx-jcvp): affected Next.js App Router builds globally disclosed Server Action and `use cache` endpoint identifiers to unauthenticated clients, exposing part of the server-function surface to any visitor.
+- [CVE-2024-56159](https://github.com/advisories/GHSA-49w6-73cw-chjr): enabling sourcemaps in affected Astro releases published server source code, making a build-configuration option a disclosure boundary.
+- [GHSA-hgv7-v322-mmgr](https://github.com/advisories/GHSA-hgv7-v322-mmgr): under rare timing, SvelteKit’s `query.batch()` could merge concurrent requests from different users and resolve them under a single request context, disclosing one user’s data to another. The application’s own serialization was correct; the framework’s data-loading primitive lost the request boundary.
+- [CVE-2026-59896](https://github.com/advisories/GHSA-hvrm-45r6-mjfj): `hono/jsx` did not isolate its rendering context per request, so one request could observe another’s data. Cited because Astro’s composable pipeline can place Hono in a metaframework request path; see the [scope note](../references.md#scope-note-on-frameworks-cited).
 
 ## Sources
 
