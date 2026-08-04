@@ -44,6 +44,7 @@ The category covers both known vulnerable components and integrity failures. “
 - [CVE-2025-59143](https://github.com/advisories/GHSA-qrmh-qg46-72pp): an npm account takeover introduced malware into `color@5.0.1`, affecting browser bundles built by common JavaScript tooling.
 - [CVE-2024-47885](https://github.com/advisories/GHSA-m85w-3h95-hcf9): an Astro client-router defect illustrates that a framework runtime is part of the application’s attack surface.
 - [GHSA-hxvh-4h3w-prp9](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxvh-4h3w-prp9): published as an incomplete fix for `CVE-2026-53721`, it shows that an inventory recording a patched version is not evidence that the reported weakness is closed. See `MFR01` for the access-control impact.
+- [CVE-2026-53669](https://github.com/advisories/GHSA-wrjc-x8rr-h8h6) and [CVE-2026-55685](https://github.com/advisories/GHSA-chx6-hx7r-mcp5): two of four advisories in React Router’s 2026-07-22 coordinated release that were published as follow-ups to earlier fixes found incomplete — here for `CVE-2025-68470`, published roughly six months earlier, and for `CVE-2026-42342`, published seven weeks earlier. The same release also revised the fixes for `CVE-2026-33245` and `CVE-2026-22030`. Incomplete fixes are therefore not one vendor’s process problem, and the interval between an initial patch and its correction can be long enough that an upgrade performed in good faith leaves a variant path open for months.
 
 ## Sources
 

@@ -11,9 +11,11 @@ Two rules keep citations predictable:
 1. **Identifier.** Cite the CVE if one is assigned, otherwise the GHSA. Never both in the same label — the identifier shown already tells the reader which exists.
 2. **URL.** Link to `https://github.com/advisories/GHSA-…` once the advisory is in the GitHub Advisory Database. Until then, link to the maintainer’s repository advisory page, which stays valid afterward.
 
-Advisory records were last reviewed on 2026-07-27. Newly published advisories may gain a CVE identifier and a GitHub Advisory Database entry within days of that date, so `GHSA-…` citations are re-checked each review cycle rather than annotated in place.
+Advisory records were last reviewed on 2026-08-04. Newly published advisories may gain a CVE identifier and a GitHub Advisory Database entry within days of that date, so `GHSA-…` citations are re-checked each review cycle rather than annotated in place.
 
-This catalog does not rank evidence by observed exploitation, and no entry should be read as “exploited” or “not exploited” from its identifier. Where that question matters, consult the [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) and [EPSS](https://www.first.org/epss/), which are maintained for exactly that purpose and change over time. As of 2026-07-27, one advisory cited in this document appears in the KEV catalog: `CVE-2025-55182`, noted under `MFR08`.
+The two rules are independent, so an entry can carry a CVE identifier while still linking to a repository advisory page: a CVE is sometimes assigned before the record reaches the Advisory Database. `CVE-2026-66062` is cited that way at present, and its URL moves once the record lands.
+
+This catalog does not rank evidence by observed exploitation, and no entry should be read as “exploited” or “not exploited” from its identifier. Where that question matters, consult the [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) and [EPSS](https://www.first.org/epss/), which are maintained for exactly that purpose and change over time. As of 2026-08-04, against KEV catalog version 2026.08.03, one advisory cited in this document appears in the catalog: `CVE-2025-55182`, noted under `MFR08`.
 
 ## Vendor coordinated release roundups
 
@@ -59,6 +61,9 @@ This catalog does not rank evidence by observed exploitation, and no entry shoul
 - [CVE-2026-44581: Next.js CSP nonce XSS](https://github.com/advisories/GHSA-ffhc-5mcf-pf4q)
 - [GHSA-9473-5f9j-94wq: Nuxt server-island runtime template injection to server-side code execution](https://github.com/nuxt/nuxt/security/advisories/GHSA-9473-5f9j-94wq) — requires `vue.runtimeCompiler`.
 - [GHSA-48hr-524c-v5w3: Nuxt unauthorized component instantiation through undeclared island props](https://github.com/nuxt/nuxt/security/advisories/GHSA-48hr-524c-v5w3)
+- [CVE-2026-53667: React Router unstable RSC error handler missing redirect-protocol validation](https://github.com/advisories/GHSA-h8fp-f39c-q6mh) — incomplete fix for `CVE-2026-33245`; affects only the unstable RSC APIs.
+- [CVE-2026-53668: React Router open redirect leading to XSS](https://github.com/advisories/GHSA-jjmj-jmhj-qwj2)
+- [CVE-2026-53666: React Router client-side constructor injection through SSR hydration](https://github.com/advisories/GHSA-337j-9hxr-rhxg) — requires application code that lets attacker input overwrite errors caught during SSR, which the advisory describes as specific and unlikely; affects Framework and Data mode, not Declarative mode.
 
 ## SSRF and origin trust
 
@@ -68,6 +73,8 @@ This catalog does not rank evidence by observed exploitation, and no entry shoul
 - [CVE-2025-67647: SvelteKit prerendering SSRF and DoS](https://github.com/advisories/GHSA-j62c-4x62-9r35)
 - [CVE-2026-64645: Next.js SSRF and open redirect through an attacker-controlled rewrite/redirect destination hostname](https://github.com/advisories/GHSA-p9j2-gv94-2wf4)
 - [CVE-2026-64649: Next.js Server Actions SSRF on custom servers through Host-associated headers](https://github.com/advisories/GHSA-89xv-2m56-2m9x)
+- [CVE-2026-53669: React Router external redirect through untrusted paths passed to navigation](https://github.com/advisories/GHSA-wrjc-x8rr-h8h6) — incomplete fix for `CVE-2025-68470`.
+- [GHSA-qwww-vcr4-c8h2: React Router unstable RSC CSRF bypass executing an action before the rejecting response](https://github.com/advisories/GHSA-qwww-vcr4-c8h2) — incomplete fix for `CVE-2026-22030`; affects only the unstable RSC APIs.
 - [OWASP API7:2023 Server Side Request Forgery](https://owasp.org/API-Security/editions/2023/en/0xa7-server-side-request-forgery/)
 
 ## Routing, rendering, and caching
@@ -96,6 +103,8 @@ This catalog does not rank evidence by observed exploitation, and no entry shoul
 - [CVE-2026-64641: Next.js Server Actions denial of service through excessive iteration](https://github.com/advisories/GHSA-m99w-x7hq-7vfj)
 - [CVE-2026-64644: Next.js Image Optimization API CPU exhaustion through malicious SVG content](https://github.com/advisories/GHSA-q8wf-6r8g-63ch)
 - [CVE-2026-64646: Next.js unbounded Server Action payload in the Edge runtime](https://github.com/advisories/GHSA-4c39-4ccg-62r3)
+- [CVE-2026-55685: React Router unauthenticated denial of service against the `__manifest` endpoint](https://github.com/advisories/GHSA-chx6-hx7r-mcp5) — incomplete fix for `CVE-2026-42342`; affects only Framework mode.
+- [CVE-2026-66062: SvelteKit ReDoS in `Accept` header content negotiation](https://github.com/sveltejs/kit/security/advisories/GHSA-29g2-3rmr-qm68) — mitigated where the platform imposes a header-length limit, exploitable where that limit is raised or absent.
 - [OWASP API4:2023 Unrestricted Resource Consumption](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/)
 
 ## Configuration and development surfaces
@@ -111,6 +120,7 @@ This catalog does not rank evidence by observed exploitation, and no entry shoul
 - [CVE-2025-55182: React Server Components RCE](https://github.com/advisories/GHSA-9qr9-h5gf-34mp)
 - [CVE-2025-59143: `color` npm account takeover malware](https://github.com/advisories/GHSA-qrmh-qg46-72pp)
 - [GHSA-hxvh-4h3w-prp9: incomplete fix for CVE-2026-53721](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxvh-4h3w-prp9) — cited here as evidence that a patched version string is not evidence of a closed weakness.
+- [React Router 2026-07-22 coordinated release](https://github.com/remix-run/react-router/security/advisories) — of six advisories, four were published as follow-ups to earlier fixes that proved incomplete: [CVE-2026-53669](https://github.com/advisories/GHSA-wrjc-x8rr-h8h6), [CVE-2026-55685](https://github.com/advisories/GHSA-chx6-hx7r-mcp5), [CVE-2026-53667](https://github.com/advisories/GHSA-h8fp-f39c-q6mh), and [GHSA-qwww-vcr4-c8h2](https://github.com/advisories/GHSA-qwww-vcr4-c8h2). Cited here for the release-level pattern rather than any individual weakness; reviewed 2026-08-04.
 - [OWASP A06:2021 Vulnerable and Outdated Components](https://owasp.org/Top10/2021/A06_2021-Vulnerable_and_Outdated_Components/)
 - [OWASP A08:2021 Software and Data Integrity Failures](https://owasp.org/Top10/2021/A08_2021-Software_and_Data_Integrity_Failures/)
 
