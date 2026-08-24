@@ -55,7 +55,7 @@ Hono is cited only where a metaframework composes it. By definition, it is a ser
 - [CVE-2026-44573: Next.js i18n data-route middleware bypass](https://github.com/advisories/GHSA-36qx-fr4f-26g5)
 - [CVE-2026-46342: Nuxt island shared-cache poisoning and island authorization note](https://github.com/advisories/GHSA-g8wj-3cr3-6w7v)
 - [CVE-2026-53721: Nuxt route-rule middleware bypass through router/matcher case-sensitivity mismatch](https://github.com/advisories/GHSA-mm7m-92g8-7m47)
-- [GHSA-hxvh-4h3w-prp9: Nuxt mixed-case route rules silently dropped, bypassing `appMiddleware` gates](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxvh-4h3w-prp9) — incomplete fix for CVE-2026-53721.
+- [CVE-2026-71315: Nuxt mixed-case route rules silently dropped, bypassing `appMiddleware` gates](https://github.com/advisories/GHSA-hxvh-4h3w-prp9) — incomplete fix for CVE-2026-53721.
 - [CVE-2026-64642: Next.js middleware/proxy bypass with Turbopack and a single locale](https://github.com/advisories/GHSA-6gpp-xcg3-4w24)
 - [CVE-2025-64765: Astro `url.pathname` middleware authorization bypass through URL-encoded path segments](https://github.com/advisories/GHSA-ggxq-hp9w-j794), [CVE-2025-66202](https://github.com/advisories/GHSA-whqg-ppgf-wp8c) — a double-encoding bypass of that fix — and [CVE-2026-59731](https://github.com/advisories/GHSA-vj59-8hwv-xxmv) — a decode-iteration limit combined with a rewrite path-canonicalization mismatch. Three records and one root cause over roughly eight months.
 - [CVE-2026-33768: Astro unauthenticated path override through `x-astro-path` in the `@astrojs/vercel` ISR function](https://github.com/advisories/GHSA-mr6q-rp88-fx84) — an authorization-relevant input introduced by the deployment adapter rather than by the application.
@@ -81,8 +81,8 @@ Hono is cited only where a metaframework composes it. By definition, it is a ser
 - [CVE-2024-47885: Astro client-router DOM clobbering XSS](https://github.com/advisories/GHSA-m85w-3h95-hcf9)
 - [CVE-2025-64764: Astro reflected-XSS research](https://zhero-web-sec.github.io/research-and-things/unlocking-reflected-xss-in-the-astro-framework)
 - [CVE-2026-44581: Next.js CSP nonce XSS](https://github.com/advisories/GHSA-ffhc-5mcf-pf4q)
-- [GHSA-9473-5f9j-94wq: Nuxt server-island runtime template injection to server-side code execution](https://github.com/nuxt/nuxt/security/advisories/GHSA-9473-5f9j-94wq) — requires `vue.runtimeCompiler`.
-- [GHSA-48hr-524c-v5w3: Nuxt unauthorized component instantiation through undeclared island props](https://github.com/nuxt/nuxt/security/advisories/GHSA-48hr-524c-v5w3)
+- [CVE-2026-71320: Nuxt server-island runtime template injection to server-side code execution](https://github.com/advisories/GHSA-9473-5f9j-94wq) — requires `vue.runtimeCompiler`.
+- [CVE-2026-71318: Nuxt unauthorized component instantiation through undeclared island props](https://github.com/advisories/GHSA-48hr-524c-v5w3)
 - [CVE-2026-53667: React Router unstable RSC error handler missing redirect-protocol validation](https://github.com/advisories/GHSA-h8fp-f39c-q6mh) — incomplete fix for `CVE-2026-33245`; affects only the unstable RSC APIs.
 - [CVE-2026-53668: React Router open redirect leading to XSS](https://github.com/advisories/GHSA-jjmj-jmhj-qwj2)
 - [CVE-2026-53666: React Router client-side constructor injection through SSR hydration](https://github.com/advisories/GHSA-337j-9hxr-rhxg) — requires application code that lets attacker input overwrite errors caught during SSR, which the advisory describes as specific and unlikely; affects Framework and Data mode, not Declarative mode.
@@ -127,7 +127,7 @@ Hono is cited only where a metaframework composes it. By definition, it is a ser
 - [CVE-2025-43864: React Router SPA-mode cache-poisoning DoS](https://github.com/advisories/GHSA-f46r-rw29-r322)
 - [CVE-2026-44576: Next.js RSC cache poisoning](https://github.com/advisories/GHSA-wfc6-r584-vfw7)
 - [CVE-2026-44572: Next.js redirect cache poisoning](https://github.com/advisories/GHSA-3g8h-86w9-wvmq)
-- [GHSA-wm8w-6qjm-cv43: Nuxt `_payload.json` cached without a user dimension, disclosing another user’s SSR data](https://github.com/nuxt/nuxt/security/advisories/GHSA-wm8w-6qjm-cv43) — remediation includes purging CDN and edge caches.
+- [CVE-2026-71316: Nuxt `_payload.json` cached without a user dimension, disclosing another user’s SSR data](https://github.com/advisories/GHSA-wm8w-6qjm-cv43) — remediation includes purging CDN and edge caches.
 - [CVE-2026-64648: Next.js server-side `fetch` cache confusion for requests with bodies](https://github.com/advisories/GHSA-68g3-v927-f742)
 - [CVE-2026-64647: Next.js server-side `fetch` cache-key collision for bodies containing invalid UTF-8 sequences](https://github.com/advisories/GHSA-4633-3j49-mh5q)
 
@@ -137,13 +137,13 @@ Hono is cited only where a metaframework composes it. By definition, it is a ser
 - [CVE-2025-32421: Next.js race condition to cache poisoning](https://github.com/advisories/GHSA-qpjv-v59x-3qc4)
 - [CVE-2025-59472: Next.js PPR unbounded memory consumption](https://github.com/advisories/GHSA-5f7q-jpqc-wp7h)
 - [CVE-2026-44579: Next.js Cache Components connection exhaustion](https://github.com/advisories/GHSA-mg66-mrh9-m8jx)
-- [GHSA-hxcr-hm88-mpq6: Nuxt island out-of-memory crash through unbounded `v-for` expansion](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxcr-hm88-mpq6)
-- [GHSA-9pgf-384g-p7mv: Nuxt island CPU exhaustion from parsing and hashing before hash validation](https://github.com/nuxt/nuxt/security/advisories/GHSA-9pgf-384g-p7mv)
+- [CVE-2026-71314: Nuxt island out-of-memory crash through unbounded `v-for` expansion](https://github.com/advisories/GHSA-hxcr-hm88-mpq6)
+- [CVE-2026-71321: Nuxt island CPU exhaustion from parsing and hashing before hash validation](https://github.com/advisories/GHSA-9pgf-384g-p7mv)
 - [CVE-2026-64641: Next.js Server Actions denial of service through excessive iteration](https://github.com/advisories/GHSA-m99w-x7hq-7vfj)
 - [CVE-2026-64644: Next.js Image Optimization API CPU exhaustion through malicious SVG content](https://github.com/advisories/GHSA-q8wf-6r8g-63ch)
 - [CVE-2026-64646: Next.js unbounded Server Action payload in the Edge runtime](https://github.com/advisories/GHSA-4c39-4ccg-62r3)
 - [CVE-2026-55685: React Router unauthenticated denial of service against the `__manifest` endpoint](https://github.com/advisories/GHSA-chx6-hx7r-mcp5) — incomplete fix for `CVE-2026-42342`; affects only Framework mode.
-- [CVE-2026-66062: SvelteKit ReDoS in `Accept` header content negotiation](https://github.com/sveltejs/kit/security/advisories/GHSA-29g2-3rmr-qm68) — mitigated where the platform imposes a header-length limit, exploitable where that limit is raised or absent.
+- [CVE-2026-66062: SvelteKit ReDoS in `Accept` header content negotiation](https://github.com/advisories/GHSA-29g2-3rmr-qm68) — mitigated where the platform imposes a header-length limit, exploitable where that limit is raised or absent.
 - SvelteKit remote functions, five advisories against one deserializer over six months: [CVE-2026-22803](https://github.com/advisories/GHSA-j2f3-wq62-6q46) (memory amplification — a small payload declares a large length, then stalls, and the buffer is allocated eagerly), [GHSA-88qp-p4qg-rqm6](https://github.com/advisories/GHSA-88qp-p4qg-rqm6) (CPU exhaustion), [GHSA-vrhm-gvg7-fpcf](https://github.com/advisories/GHSA-vrhm-gvg7-fpcf) (memory exhaustion), [GHSA-fpg4-jhqr-589c](https://github.com/advisories/GHSA-fpg4-jhqr-589c) (deserialization expansion), and [GHSA-wqjv-9729-c5q2](https://github.com/advisories/GHSA-wqjv-9729-c5q2) (large payloads crashing the Node process). A new request-body format is a new resource-limit surface.
 - [CVE-2026-40073: SvelteKit `BODY_SIZE_LIMIT` bypass in `@sveltejs/adapter-node`](https://github.com/advisories/GHSA-2crg-3p73-43xp)
 - [CVE-2026-29772: Astro missing request-body size limit in Server Islands](https://github.com/advisories/GHSA-3rmj-9m5h-8fpv) and [CVE-2026-27729: the same omission in Server Actions](https://github.com/advisories/GHSA-jm64-8m5q-4qh8) — two transports, one missing limit, patched in the same adapter release.
@@ -157,8 +157,8 @@ Hono is cited only where a metaframework composes it. By definition, it is a ser
 
 - [CVE-2024-23657: Nuxt Devtools traversal and cross-site WebSocket exposure](https://github.com/advisories/GHSA-rcvg-rgf7-pppv)
 - [CVE-2024-34344: Nuxt test-mode code execution](https://github.com/advisories/GHSA-v784-fjjh-f8r4)
-- [GHSA-279x-mwfv-vcqv: unauthenticated Nuxt DevTools RPC allowing arbitrary command execution on a developer host](https://github.com/nuxt/nuxt/security/advisories/GHSA-279x-mwfv-vcqv) — fixed in `@nuxt/devtools@3.3.1`.
-- [GHSA-7c4v-fwgw-9rf7: Nuxt development-server path and workspace disclosure through a header-based locality check](https://github.com/nuxt/nuxt/security/advisories/GHSA-7c4v-fwgw-9rf7)
+- [CVE-2026-71319: unauthenticated Nuxt DevTools RPC allowing arbitrary command execution on a developer host](https://github.com/advisories/GHSA-279x-mwfv-vcqv) — fixed in `@nuxt/devtools@3.3.1`.
+- [CVE-2026-72744: Nuxt development-server path and workspace disclosure through a header-based locality check](https://github.com/advisories/GHSA-7c4v-fwgw-9rf7)
 - [CVE-2025-64757: Astro development server arbitrary local file read](https://github.com/advisories/GHSA-x3h8-62x9-952g) and [CVE-2025-64745: reflected XSS on the Astro development error page](https://github.com/advisories/GHSA-w2vj-39qv-7vh7)
 - [GHSA-r5mf-4r5x-q78f: Quasar development SSR/SSG error page discloses the entire process environment](https://github.com/quasarframework/quasar/security/advisories/GHSA-r5mf-4r5x-q78f) — every `process.env` variable, request header, and cookie is serialized into the response, and the development server binds `0.0.0.0` by default, so one unauthenticated `GET` returns the developer’s cloud keys, registry tokens, and database URLs. The `</script>` guard is ASCII-case-sensitive and requires a literal `>`, so `</SCRIPT>`, `</script >`, and `</script/>` all escape the element.
 - [GHSA-fh39-c73x-5pjv: Quasar development TLS private keys cached with overly permissive filesystem permissions](https://github.com/quasarframework/quasar/security/advisories/GHSA-fh39-c73x-5pjv)
@@ -169,7 +169,7 @@ Hono is cited only where a metaframework composes it. By definition, it is a ser
 
 - [CVE-2025-55182: React Server Components RCE](https://github.com/advisories/GHSA-9qr9-h5gf-34mp)
 - [CVE-2025-59143: `color` npm account takeover malware](https://github.com/advisories/GHSA-qrmh-qg46-72pp)
-- [GHSA-hxvh-4h3w-prp9: incomplete fix for CVE-2026-53721](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxvh-4h3w-prp9) — cited here as evidence that a patched version string is not evidence of a closed weakness.
+- [CVE-2026-71315: incomplete fix for CVE-2026-53721](https://github.com/advisories/GHSA-hxvh-4h3w-prp9) — cited here as evidence that a patched version string is not evidence of a closed weakness.
 - [React Router 2026-07-22 coordinated release](https://github.com/remix-run/react-router/security/advisories) — of six advisories, four were published as follow-ups to earlier fixes that proved incomplete: [CVE-2026-53669](https://github.com/advisories/GHSA-wrjc-x8rr-h8h6), [CVE-2026-55685](https://github.com/advisories/GHSA-chx6-hx7r-mcp5), [CVE-2026-53667](https://github.com/advisories/GHSA-h8fp-f39c-q6mh), and [GHSA-qwww-vcr4-c8h2](https://github.com/advisories/GHSA-qwww-vcr4-c8h2). Cited here for the release-level pattern rather than any individual weakness; reviewed 2026-08-04.
 - [CVE-2026-45321: malware in 42 `@tanstack/*` packages exfiltrating cloud credentials, GitHub tokens, and SSH keys](https://github.com/advisories/GHSA-g7cv-rxg3-hmpx) — a metaframework’s own publishing pipeline compromised, rather than a leaf dependency of one.
 - [CVE-2026-42211: React Router unauthenticated remote code execution through arbitrary constructor invocation in vendored `turbo-stream` v2 `TYPE_ERROR` deserialization](https://github.com/advisories/GHSA-49rj-9fvp-4h2h) — a vendored copy of a serialization library, so the application’s dependency inventory does not name the vulnerable component.
@@ -181,7 +181,7 @@ Hono is cited only where a metaframework composes it. By definition, it is a ser
 ## Observability and inventory
 
 - [CVE-2026-64643: Next.js Server Function endpoint disclosure, documented as reconnaissance for a broader attack chain](https://github.com/advisories/GHSA-955p-x3mx-jcvp)
-- [GHSA-hxcr-hm88-mpq6: Nuxt island endpoint identifiers are predictable, non-secret digests](https://github.com/nuxt/nuxt/security/advisories/GHSA-hxcr-hm88-mpq6) — cited here for endpoint reachability, not for its denial-of-service impact.
+- [CVE-2026-71314: Nuxt island endpoint identifiers are predictable, non-secret digests](https://github.com/advisories/GHSA-hxcr-hm88-mpq6) — cited here for endpoint reachability, not for its denial-of-service impact.
 - [GHSA-q7p4-cm8g-969j: the vulnerable Analog middleware is generated by `@analogjs/vite-plugin-nitro`](https://github.com/analogjs/analog/security/advisories/GHSA-q7p4-cm8g-969j) — cited here because an inventory derived from application source will not contain it. Adapter- and plugin-generated request handlers must be enumerated from build output.
 - [GHSA-9m65-766c-r333: a TanStack Start server function was reachable through another function’s client reference](https://github.com/advisories/GHSA-9m65-766c-r333) — cited here because the reachable set of server functions was larger than the set the application exposed deliberately.
 - [OWASP A09:2021 Security Logging and Monitoring Failures](https://owasp.org/Top10/2021/A09_2021-Security_Logging_and_Monitoring_Failures/)
@@ -189,7 +189,7 @@ Hono is cited only where a metaframework composes it. By definition, it is a ser
 
 ## Insecure design and assurance
 
-Four frameworks with independent implementations published advisories in which a request-borne payload was deserialized into an invocation target: [CVE-2026-27971](https://github.com/advisories/GHSA-p9x5-jp3h-96mm) (Qwik `server$`, unauthenticated remote code execution), [GHSA-9m65-766c-r333](https://github.com/advisories/GHSA-9m65-766c-r333) (TanStack Start, a sibling server function), [GHSA-9473-5f9j-94wq](https://github.com/nuxt/nuxt/security/advisories/GHSA-9473-5f9j-94wq) (Nuxt server islands, a compiled `template` prop), and [CVE-2026-42211](https://github.com/advisories/GHSA-49rj-9fvp-4h2h) (React Router, constructor invocation through a vendored deserializer). Cited together as design evidence: the ergonomics of calling a server function as though it were a local one recur across framework families, and so does the failure to treat its wire format as an untrusted parsing boundary.
+Four frameworks with independent implementations published advisories in which a request-borne payload was deserialized into an invocation target: [CVE-2026-27971](https://github.com/advisories/GHSA-p9x5-jp3h-96mm) (Qwik `server$`, unauthenticated remote code execution), [GHSA-9m65-766c-r333](https://github.com/advisories/GHSA-9m65-766c-r333) (TanStack Start, a sibling server function), [CVE-2026-71320](https://github.com/advisories/GHSA-9473-5f9j-94wq) (Nuxt server islands, a compiled `template` prop), and [CVE-2026-42211](https://github.com/advisories/GHSA-49rj-9fvp-4h2h) (React Router, constructor invocation through a vendored deserializer). Cited together as design evidence: the ergonomics of calling a server function as though it were a local one recur across framework families, and so does the failure to treat its wire format as an untrusted parsing boundary.
 
 - [OWASP A04:2021 Insecure Design](https://owasp.org/Top10/2021/A04_2021-Insecure_Design/)
 - [OWASP API6:2023 Unrestricted Access to Sensitive Business Flows](https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/)
