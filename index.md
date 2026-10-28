@@ -1,6 +1,6 @@
 # Top 10 Metaframework Security Risks — Index
 
-This is a draft-stage awareness document for full-stack JavaScript and TypeScript [metaframework](https://metaframe.works/blog/what-is-a-metaframework/) applications, including [Next.js](https://nextjs.org), [Nuxt](https://nuxt.com), [Astro](https://astro.build), [SvelteKit](https://svelte.dev/docs/kit/introduction), [React Router](https://reactrouter.com) and [Remix](https://remix.run), [TanStack Start](https://tanstack.com/start/latest), [Qwik City](https://qwik.dev), [Quasar](https://quasar.dev), [SolidStart](https://start.solidjs.com), [Waku](https://waku.gg), [Analog](https://analogjs.org), [RedwoodSDK](https://rwsdk.com), [UmiJS](https://umijs.org), [Vike](https://vike.dev), [Fresh](https://usefresh.dev), and comparable systems.
+This is a draft-stage awareness document for full-stack JavaScript and TypeScript [metaframework](https://metaframe.works/blog/what-is-a-metaframework/) applications, including [Next.js](https://nextjs.org), [Nuxt](https://nuxt.com), [Astro](https://astro.build), [SvelteKit](https://svelte.dev/docs/kit/introduction), [React Router](https://reactrouter.com) and [Remix](https://remix.run), [TanStack Start](https://tanstack.com/start/latest), [Qwik City](https://qwik.dev) (Qwik Router from Qwik 2), [Quasar](https://quasar.dev), [SolidStart](https://start.solidjs.com), [Waku](https://waku.gg), [Analog](https://analogjs.org), [RedwoodSDK](https://rwsdk.com), [UmiJS](https://umijs.org), [Vike](https://vike.dev), [Fresh](https://usefresh.dev), and comparable systems.
 
 The cited evidence is not distributed evenly across them, and the imbalance is partly a property of the ecosystem rather than of this document. Next.js, Nuxt, Astro, React Router, and SvelteKit publish advisories at a high rate; several actively developed frameworks on the [comparison list](https://metaframe.works/comparison/) have published none. A category evidenced only from one framework is a weaker claim than one evidenced across framework families, so the [references](references.md#scope-note-on-frameworks-cited) record which frameworks are in scope, which are excluded, and why.
 
@@ -27,7 +27,7 @@ The draft favors root causes over symptoms where possible. For instance, it plac
 
 ## Ordering rationale
 
-`MFR01`–`MFR04` cover direct compromise paths: impersonating or exceeding an identity’s authority, exposing server-only data, executing attacker-controlled content, or making the server act as a network client. `MFR05`–`MFR07` cover the framework’s request-processing lifecycle: variant routing/rendering, resource control, and operational configuration. `MFR08`–`MFR10` cover integrity, visibility, and the design/assurance conditions that let the other failures persist.
+`MFR01`–`MFR04` cover direct compromise paths: impersonating or exceeding an identity’s authority, exposing server-only data, executing attacker-controlled content, or trusting a request’s origin — making the server act as a network client, or letting another site invoke its operations. `MFR05`–`MFR07` cover the framework’s request-processing lifecycle: variant routing/rendering, resource control, and operational configuration. `MFR08`–`MFR10` cover integrity, visibility, and the design/assurance conditions that let the other failures persist.
 
 ## Provisional risk-factor legend
 

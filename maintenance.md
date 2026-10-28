@@ -47,7 +47,7 @@ Monthly, or after any framework security release the project intends to cite:
 
 1. Run the script with `--links`.
 2. Apply the identifier substitutions it reports.
-3. Review new advisories from the frameworks in scope against the existing categories. Most belong in [references](references.md); promote one into a risk page only when it demonstrates a root cause the page does not yet evidence.
+3. Review new advisories from the frameworks in scope against the existing categories. Most belong in [references](references.md); promote one into a risk page only when it demonstrates a root cause the page does not yet evidence. Where an advisory could fit more than one category, follow the interim rules under [open classification questions](roadmap.md#open-classification-questions), and record any new boundary question there.
 4. Note any new KEV entry in the relevant risk page, with its date.
 5. Update the review date in the [citing advisories](references.md#citing-advisories) section.
 

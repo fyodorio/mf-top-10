@@ -9,9 +9,11 @@
 
 ## Description
 
-The application trusts an attacker-controlled URL, host, forwarded header, request origin, redirect destination, or proxy target when deciding where the server should connect or how it should construct an absolute URL. The attacker can make the server reach internal services, cloud metadata endpoints, management planes, or another tenant’s origin.
+The application trusts an attacker-controlled URL, host, forwarded header, request origin, redirect destination, or proxy target. The trust failure runs in two directions. Outbound, it decides where the server connects or how it constructs an absolute URL, so the attacker can make the server reach internal services, cloud metadata endpoints, management planes, or another tenant’s origin. Inbound, it decides whether a request from another site may invoke a state-changing server function or action with the visitor’s credentials, or send the visitor on to an arbitrary destination.
 
-Metaframework adapters regularly reconstruct requests from `Host` and `X-Forwarded-*` headers, generate absolute URLs, proxy assets, support image/icon fetching, run webhooks, and issue server-side redirects. This makes origin trust a cross-cutting server-runtime concern, not merely a “URL preview” issue.
+Both directions are the same root cause: the origin of a request, or of a destination, is taken from input rather than verified.
+
+Metaframework adapters regularly reconstruct requests from `Host` and `X-Forwarded-*` headers, generate absolute URLs, proxy assets, support image/icon fetching, run webhooks, and issue server-side redirects. Server functions and actions are dispatched as ordinary HTTP endpoints, so each framework has to decide whether to validate the request origin before running one. Several shipped without that check. This makes origin trust a cross-cutting server-runtime concern, not merely a “URL preview” issue.
 
 ## Metaframework-specific failure modes
 
@@ -32,6 +34,7 @@ Metaframework adapters regularly reconstruct requests from `Host` and `X-Forward
 3. Isolate outbound fetching in a restricted network path, block metadata and private-address access, and minimize its credentials.
 4. Do not return raw internal fetch responses or timing details to the caller.
 5. Test URL parsers with encoded, scheme-relative, IPv6, credential, redirect, DNS-rebinding, and forwarded-header cases.
+6. Confirm that every state-changing server function and action rejects cross-site requests — through `Sec-Fetch-Site`, `Origin`, or a token — on the framework version actually deployed, and do not rely on `SameSite` cookies as the only control.
 
 ## Relevant CWEs
 
@@ -39,6 +42,7 @@ Metaframework adapters regularly reconstruct requests from `Host` and `X-Forward
 - [CWE-20: Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)
 - [CWE-441: Unintended Proxy or Intermediary](https://cwe.mitre.org/data/definitions/441.html)
 - [CWE-601: URL Redirection to Untrusted Site](https://cwe.mitre.org/data/definitions/601.html)
+- [CWE-352: Cross-Site Request Forgery](https://cwe.mitre.org/data/definitions/352.html)
 
 ## Representative evidence
 

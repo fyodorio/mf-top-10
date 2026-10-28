@@ -35,7 +35,7 @@ Astro is the exception to the roundup pattern: it publishes advisories continuou
 
 ## Scope note on frameworks cited
 
-The frameworks cited below are those on the [metaframework comparison](https://metaframe.works/comparison/) that both maintain an active development cadence and have published framework-level advisories. That currently means Next.js, Nuxt, Astro, SvelteKit, React Router, Qwik City, Quasar, TanStack Start, SolidStart, Waku, RedwoodSDK, Analog, and UmiJS.
+The frameworks cited below are those on the [metaframework comparison](https://metaframe.works/comparison/) that both maintain an active development cadence and have published framework-level advisories. That currently means Next.js, Nuxt, Astro, SvelteKit, React Router, Qwik City (Qwik Router from Qwik 2), Quasar, TanStack Start, SolidStart, Waku, RedwoodSDK, Analog, and UmiJS.
 
 Three exclusions are deliberate. Documentation-oriented generators on the same list — Docusaurus, VitePress, Observable Framework — have no request-handling server surface and no advisory history, so they contribute nothing to these categories. Vike is actively developed and in scope conceptually, but has no published framework-level advisories to cite. SolidStart was in the same position until 2026-10-07, when it published its first three, all against its server-function endpoint; before then its nearest evidence was [CVE-2025-27109](https://github.com/advisories/GHSA-3qxh-p7jc-5xh6) in Solid itself.
 

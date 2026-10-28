@@ -9,7 +9,7 @@
 
 ## Description
 
-An attacker can consume disproportionate compute, memory, storage, connections, bandwidth, serverless duration, or paid third-party operations; or can exploit a race between requests to violate business rules. A per-route rate limit alone is rarely enough for a full-stack application: server actions, loaders, upload/image processing, streaming, cache revalidation, webhook calls, and background work often have separate cost profiles and identities.
+An attacker can consume disproportionate compute, memory, storage, connections, bandwidth, serverless duration, or paid third-party operations; can stall or terminate a server process shared by other requests; or can exploit a race between requests to violate business rules. A per-route rate limit alone is rarely enough for a full-stack application: server actions, loaders, upload/image processing, streaming, cache revalidation, webhook calls, and background work often have separate cost profiles and identities.
 
 ## Metaframework-specific failure modes
 

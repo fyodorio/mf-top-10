@@ -72,6 +72,24 @@ Advisory records change after this project cites them: identifiers are assigned,
 
 Use findings and feedback to improve the project’s reusable guidance. The goal is not to maximize category count or vulnerability volume; it is to help teams apply the most useful controls at the right points in their software lifecycle.
 
+## Open classification questions
+
+Questions raised during maintenance that change category boundaries or definitions are recorded here and decided at the next versioned release, not mid-cycle. Each records the interim rule that monthly maintenance follows until then.
+
+### Access control or variant confusion (`MFR01` / `MFR05`)
+
+Raised 2026-10-28. `MFR05` describes a correct rule that is skipped because two layers interpret a request differently, but several such cases are cited under `MFR01`: the Nuxt route-rule series from `CVE-2026-53721` to `GHSA-9v7c-q64q-vv33` (case, percent-encoding, and dot segments), Astro’s encoded-path middleware bypasses, and Next.js prefetch variants. `CWE-178` in `MFR01`’s mapping is a symptom of the same drift.
+
+Interim rule: place new evidence under `MFR01` when the authorization rule is missing or wrong, and under `MFR05` when a correct rule is skipped by a parsing, normalization, or transport mismatch. Cite it under the other category only for a point that category makes and the primary one does not. Existing evidence is re-homed, and `CWE-178` reconsidered, at the release.
+
+### Server-function wire formats as a cross-cutting weakness
+
+Raised 2026-10-28. Request-borne payloads that a framework deserializes for its own server-function or component protocol produce findings in five categories: remote code execution (`MFR01` for Qwik `server$`, `MFR08` for React Server Components), resource exhaustion (`MFR06`: SvelteKit remote functions, Qwik `formToObj`, SolidStart), cross-site invocation (`MFR04`), and design (`MFR10`). Classification currently follows where the defect lives — an upstream runtime or the framework itself — rather than the weakness, which conflicts with the root-cause principle stated in the [index](index.md#status-and-intended-use).
+
+Options for the release review: a crosswalk theme spanning categories, leaving the ten unchanged; or a dedicated category, which would require merging two existing ones to stay at ten. `MFR09` is the candidate most often raised, as a control failure with no exploitability score and the thinnest advisory evidence. One month of data is not enough to decide.
+
+Interim rule: classify by the weakness the payload demonstrates, as now, and add each new instance to the `MFR10` cross-framework paragraph in the [references](references.md#insecure-design-and-assurance) so the pattern stays countable.
+
 ## Related documents
 
 - [Detailed taxonomy](index.md)
