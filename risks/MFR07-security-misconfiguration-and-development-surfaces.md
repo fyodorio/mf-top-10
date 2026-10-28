@@ -25,6 +25,7 @@ This category includes exposure of development tooling and operational interface
 - Security-relevant behavior that differs by bundler, compiler, adapter, or runtime target, so configuration validated under one build pipeline is untested under the one actually deployed.
 - A development server that binds all interfaces by default while also serving a verbose error surface, so a permissive bind address and a debug feature that are each individually defensible combine into unauthenticated secret disclosure.
 - Development artifacts written to disk — TLS keys, caches, environment snapshots, build metadata — with permissions that any local user or process can read.
+- Secrets copied into generated development artifacts — server bundles, derived keys — inside a directory the development server is allowed to serve, so a deny list that blocks the secret’s source file does not block the artifact that now contains it.
 - Build-time tooling that executes shell commands built from repository metadata, filenames, or branch names, making the build host a request-free injection surface.
 
 ## Prevention and verification priorities
@@ -44,6 +45,7 @@ This category includes exposure of development tooling and operational interface
 - [CWE-798: Use of Hard-coded Credentials](https://cwe.mitre.org/data/definitions/798.html)
 - [CWE-306: Missing Authentication for Critical Function](https://cwe.mitre.org/data/definitions/306.html)
 - [CWE-290: Authentication Bypass by Spoofing](https://cwe.mitre.org/data/definitions/290.html)
+- [CWE-552: Files or Directories Accessible to External Parties](https://cwe.mitre.org/data/definitions/552.html)
 
 ## Representative evidence
 
@@ -56,6 +58,7 @@ This category includes exposure of development tooling and operational interface
 - [CVE-2025-64757](https://github.com/advisories/GHSA-x3h8-62x9-952g) and [CVE-2025-64745](https://github.com/advisories/GHSA-w2vj-39qv-7vh7): arbitrary local file read through the Astro development server, and reflected XSS on its error page.
 - [CVE-2026-106105](https://github.com/advisories/GHSA-fh39-c73x-5pjv): Quasar cached development TLS private keys with overly permissive filesystem permissions, exposing them to any local user.
 - [CVE-2026-16492](https://github.com/advisories/GHSA-g3hq-vgww-mrhj): OS command injection in a UmiJS Git file helper, reached through repository metadata during a build rather than through an HTTP request — the build host is a configuration surface too.
+- [GHSA-648h-gw55-m2g7](https://github.com/nuxt/nuxt/security/advisories/GHSA-648h-gw55-m2g7) and [GHSA-3xf4-9g3c-4h4w](https://github.com/nuxt/nuxt/security/advisories/GHSA-3xf4-9g3c-4h4w): `nuxt dev` wrote its Nitro server bundle, with resolved private `runtimeConfig` inlined, and a generated development `appSecret` into the build directory, which Nuxt passes to Vite’s `server.fs.allow`. Both were then fetchable through `/_nuxt/@fs/`. Vite’s default deny list blocks `.env`, but not the bundle containing values read from it, and the `appSecret` is enough to forge session cookies. The first is not fixed for Nuxt 3.
 
 ## Sources
 

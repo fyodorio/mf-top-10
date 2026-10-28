@@ -24,6 +24,7 @@ An attacker can consume disproportionate compute, memory, storage, connections, 
 - A framework or plugin parsing an unbounded request header on every render — user agent, accept, forwarded — with a backtracking regular expression, on a single-threaded event loop.
 - A configured limit enforced by a layer other than the one that reads the body, so the adapter, runtime, or edge bypasses it.
 - A newly introduced request encoding, streaming format, or server-function transport shipped without the size, depth, and element-count limits already applied to established ones.
+- A promise rejection left without a handler during deserialization or streamed rendering, so that under Node’s default unhandled-rejection policy one request terminates the whole server process rather than failing on its own.
 
 ## Prevention and verification priorities
 
@@ -44,6 +45,7 @@ An attacker can consume disproportionate compute, memory, storage, connections, 
 - [CWE-407: Inefficient Algorithmic Complexity](https://cwe.mitre.org/data/definitions/407.html)
 - [CWE-789: Memory Allocation with Excessive Size Value](https://cwe.mitre.org/data/definitions/789.html)
 - [CWE-1284: Improper Validation of Specified Quantity in Input](https://cwe.mitre.org/data/definitions/1284.html)
+- [CWE-248: Uncaught Exception](https://cwe.mitre.org/data/definitions/248.html)
 
 ## Representative evidence
 
@@ -60,6 +62,7 @@ An attacker can consume disproportionate compute, memory, storage, connections, 
 - [CVE-2026-106104](https://github.com/advisories/GHSA-68jq-fhch-4xq4): Quasar auto-installs its `Platform` plugin on every server-side render, feeding the raw, unbounded `User-Agent` header into backtracking regular expressions whose cost is cubic in header length. The advisory measures an 8 KB header blocking the event loop for about 4.4 seconds and a 16 KB header for about 35 — a single unauthenticated request, against a plugin the application did not opt into.
 - [CVE-2026-32701](https://github.com/advisories/GHSA-whhv-gg5v-864r): Qwik City’s FormData processing permitted array-method pollution, producing type confusion and denial of service.
 - [CVE-2026-34077](https://github.com/advisories/GHSA-rxv8-25v2-qmq8): React Router single-fetch responses reflected user input in a way that enabled denial of service.
+- [CVE-2026-84994](https://github.com/advisories/GHSA-x586-xvc8-g7q6), [GHSA-qv38-p6hv-9756](https://github.com/QwikDev/qwik/security/advisories/GHSA-qv38-p6hv-9756), and [GHSA-6wg2-9868-jhrw](https://github.com/solidjs/solid-start/security/advisories/GHSA-6wg2-9868-jhrw): an orphaned rejection in Qwik’s `Resource` deserialization, a synchronous render error inside a Qwik `<Pending>` boundary, and a malformed later frame in a SolidStart server-function request each produced an unhandled promise rejection, which terminates a Node process under the default policy. Three records in two frameworks within one month. The cost to the attacker is one request; the cost to the server is every request in flight on that process, and a restart loop if the request is repeated.
 
 ## Sources
 

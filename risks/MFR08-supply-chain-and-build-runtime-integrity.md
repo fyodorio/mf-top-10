@@ -24,6 +24,7 @@ The category covers both known vulnerable components and integrity failures. “
 - A vulnerable component vendored into a framework’s own source, so it carries no package identity and neither an SBOM nor an SCA scan keyed to package names reports the application as affected.
 - A compromise of the framework’s own publishing account or release pipeline, which dependency minimization in the application cannot mitigate.
 - A framework’s continuous-integration configuration treated as the maintainer’s concern, though it is an upstream build input for every release the application installs.
+- A framework major version past end of life, which continues to receive disclosures but no fixes, so advisories against it carry no patched version for the line the application runs.
 
 ## Prevention and verification priorities
 
@@ -53,6 +54,7 @@ The category covers both known vulnerable components and integrity failures. “
 - [CVE-2024-47885](https://github.com/advisories/GHSA-m85w-3h95-hcf9): an Astro client-router defect illustrates that a framework runtime is part of the application’s attack surface.
 - [CVE-2026-71315](https://github.com/advisories/GHSA-hxvh-4h3w-prp9): published as an incomplete fix for `CVE-2026-53721`, it shows that an inventory recording a patched version is not evidence that the reported weakness is closed. See `MFR01` for the access-control impact.
 - [CVE-2026-53669](https://github.com/advisories/GHSA-wrjc-x8rr-h8h6) and [CVE-2026-55685](https://github.com/advisories/GHSA-chx6-hx7r-mcp5): two of four advisories in React Router’s 2026-07-22 coordinated release that were published as follow-ups to earlier fixes found incomplete — here for `CVE-2025-68470`, published roughly six months earlier, and for `CVE-2026-42342`, published seven weeks earlier. The same release also revised the fixes for `CVE-2026-33245` and `CVE-2026-22030`. Incomplete fixes are therefore not one vendor’s process problem, and the interval between an initial patch and its correction can be long enough that an upgrade performed in good faith leaves a variant path open for months.
+- [CVE-2026-114130](https://github.com/advisories/GHSA-jjm6-p2m9-9w4x) and [GHSA-648h-gw55-m2g7](https://github.com/nuxt/nuxt/security/advisories/GHSA-648h-gw55-m2g7): two of five Nuxt advisories published in October 2026 that affect Nuxt 3 and are fixed only in Nuxt 4. Nuxt 3 reached end of life on 2026-07-31; the first is itself an incomplete fix for an advisory that Nuxt 3 did receive a patch for in June. An application on an end-of-life line keeps appearing in advisories, and an SCA tool reports it as vulnerable with no upgrade within the major version to offer.
 
 ## Sources
 
